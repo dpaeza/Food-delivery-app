@@ -1,0 +1,16 @@
+@import "./components/splash/splash.scss";
+@import "./components/slide/slide.scss";
+@import "./components/singIn/signIn.scss";
+@import "./components/verification/verification.scss";
+@import "./components/createAcount/createAcount.scss";
+@import "./components/location/location.scss";
+@import "./components/home/home.scss";
+@import "./components/search/search.scss";
+@import "./components/orders/orders.scss";
+@import "./components/profile/profile.scss"
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
