@@ -6,9 +6,9 @@
     justify-content: space-between;
 
     &__carousel {
-
         width: 100%;
         height: 300px;
+
 
         img {
             width: 100%;
@@ -24,14 +24,19 @@
     button{
         width: 100%;
         height: 44px;
+        background: #ffe031;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer !important;
+        position: relative;
+    }
+
+    &__link{
         font-weight: 500;
         font-size: 14px;
         line-height: 16px;
         color: #414141;
-        background: #ffe031;
-        border-radius: 10px;
-        border: none;
-        cursor: pointer;
+        text-decoration: none;
     }
 
     .carousel .control-dots {
@@ -41,7 +46,6 @@
         padding: 0;
         text-align: center;
         width: 100%;
-        z-index: 1;
     }
 
     .carousel .control-dots .dot {

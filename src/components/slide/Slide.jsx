@@ -1,21 +1,15 @@
 import React from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.css";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import slide_1 from "../../assets/slide_1.svg";
 import slide_2 from "../../assets/slide_2.svg";
 import slide_3 from "../../assets/slide_3.svg";
 
 const Slide = () => {
 
-    const navigate = useNavigate();
-
-    const handleNext = () => {
-        navigate("/sign_in");
-    }
-
     return (
-        <body className="slide">
+        <section className="slide">
             <Carousel showArrows={false} showThumbs={false} showStatus={false} className="slide__carousel">
                 <div>
                     <figure>
@@ -36,8 +30,10 @@ const Slide = () => {
                     <p>We will deliver as soon as possible</p>
                 </div>
             </Carousel>
-            <button onClick={handleNext}>Next</button>
-        </body>
+            <button>
+                <Link to="/sign_in" className="slide__link">Next</Link>
+            </button>
+        </section>
     )
 }
 
