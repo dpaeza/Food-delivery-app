@@ -15,5 +15,8 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        animation: bounceInRight;
+        animation: lightSpeedInRight; /* referring directly to the animation's @keyframe declaration */
+        animation-duration: 2s;
     }
 }

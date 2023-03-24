@@ -1,5 +1,6 @@
 import React from "react";
-import maina_icon from "../../assets/main_icon.svg"
+import maina_icon from "../../assets/main_icon.svg";
+import 'animate.css';
 
 const Splash = () => {
 
