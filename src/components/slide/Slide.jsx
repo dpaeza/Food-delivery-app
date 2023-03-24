@@ -1,6 +1,7 @@
 import React from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.css";
+import { useNavigate } from "react-router-dom";
 import slide_1 from "../../assets/slide_1.svg";
 import slide_2 from "../../assets/slide_2.svg";
 import slide_3 from "../../assets/slide_3.svg";
@@ -9,7 +10,7 @@ const Slide = () => {
 
     return (
         <body className="slide">
-            <Carousel showArrows={false} showThumbs={false} showStatus={false}>
+            <Carousel showArrows={false} showThumbs={false} showStatus={false} className="slide__carousel">
                 <div>
                     <figure>
                         <img src={slide_1} alt="img" />
