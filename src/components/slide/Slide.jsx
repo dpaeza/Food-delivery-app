@@ -8,6 +8,12 @@ import slide_3 from "../../assets/slide_3.svg";
 
 const Slide = () => {
 
+    const navigate = useNavigate();
+
+    const handleNext = () => {
+        navigate("/sign_in");
+    }
+
     return (
         <body className="slide">
             <Carousel showArrows={false} showThumbs={false} showStatus={false} className="slide__carousel">
@@ -30,7 +36,7 @@ const Slide = () => {
                     <p>We will deliver as soon as possible</p>
                 </div>
             </Carousel>
-            <button>Next</button>
+            <button onClick={handleNext}>Next</button>
         </body>
     )
 }
