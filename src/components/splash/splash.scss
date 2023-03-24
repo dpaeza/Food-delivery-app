@@ -1,0 +1,19 @@
+
+.splash{
+    width: 100vw;
+    height: 100vh;
+    background-color: #FFE031;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    figure{
+        width: 121px;
+        height: 113px;
+        background-color: #FFFFFF;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}

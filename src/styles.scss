@@ -7,10 +7,16 @@
 @import "./components/home/home.scss";
 @import "./components/search/search.scss";
 @import "./components/orders/orders.scss";
-@import "./components/profile/profile.scss"
+@import "./components/profile/profile.scss";
 
-body {
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
+    font-family: 'Roboto', sans-serif;
+};
+
+
+
+
+
