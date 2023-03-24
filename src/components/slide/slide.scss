@@ -4,6 +4,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    align-items: center;
 
     &__carousel {
         width: 100%;
@@ -22,7 +23,7 @@
     }
 
     button{
-        width: 100%;
+        width: 500px;
         height: 44px;
         background: #ffe031;
         border-radius: 10px;
@@ -72,5 +73,14 @@
 
     .carousel .control-dots .dot:hover{
         opacity: 1;
+    }
+}
+
+@media (max-width: 730px) {
+    .slide{
+
+        button{
+            width: 100%;
+        }
     }
 }
