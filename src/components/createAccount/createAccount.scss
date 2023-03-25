@@ -1,0 +1,77 @@
+.createAccount{
+    padding: 40px 16px 60px 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+
+    &__modal{
+        width: 350px;
+        height: 90%;
+    }
+
+    h1{
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 28px;
+        text-align: center;
+        color: #414141;
+        text-align: left;
+        margin-bottom: 56px;
+    }
+
+    form{
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        justify-content: space-between;
+
+        section{
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        div{
+            display: flex;
+            flex-direction: column;
+        }
+
+        label{
+            font-weight: 400;
+            font-size: 10px;
+            line-height: 12px;
+            color: #A7A7A7;
+        }
+
+        input{
+            border: none;
+            outline: none;
+            border-bottom: 0.5px solid #A7A7A7;
+            padding: 6px 0px;
+            font-weight: 300;
+            font-size: 14px;
+            line-height: 16px;
+            color: #414141;
+        }
+
+        button{
+            background: #FFE031;
+            border-radius: 10px;
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 16px;
+            text-align: center;
+            color: #414141;
+            height: 44px;
+            border: none;
+            cursor: pointer;
+        }
+    }
+}
+
+@media (max-width: 730px) {
+    .createAccount__modal{
+        width: 100%;
+    }
+}
