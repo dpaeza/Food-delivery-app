@@ -5,11 +5,10 @@ import phoneGrey from "../../assets/phone_grey.svg"
 const LoginNumber = () => {
 
     return (
-        <section className="login loginNumber">
+        <section className="login">
             <figure>
                 <img src={logo} alt="logo" />
             </figure>
-
             <h1>Login</h1>
             <p className="login__p">
                 Login or create an account with your phone number to start

@@ -1,0 +1,64 @@
+.verification{
+
+    &__sendAgain{
+        font-weight: 400;
+        cursor: pointer;
+    }
+
+    &__form{
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        justify-content: space-between;
+
+            input{
+                border: none;
+                outline: none;
+                color: #A7A7A7;
+                width: 350px;
+                border-bottom: 1px solid #FFE031;
+                padding: 9px;
+                font-weight: 400;
+                font-size: 20px;
+                line-height: 23px;
+            }
+
+            input[type="number"]::-webkit-outer-spin-button,
+            input[type="number"]::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+            }
+
+            input[type="number"] {
+                -moz-appearance: textfield;
+            }
+
+            button{
+                background: #FFE031;
+                border-radius: 10px;
+                font-weight: 500;
+                font-size: 14px;
+                line-height: 16px;
+                text-align: center;
+                color: #414141;
+                height: 44px;
+                border: none;
+                cursor: pointer;
+            }
+    }
+}
+
+@media (max-width: 730px) {
+    .verification{
+        width: 100%;
+
+        &__form{
+            width: 100%;
+            
+            input{
+                width: 100%;
+            }
+
+        }
+    }
+}
