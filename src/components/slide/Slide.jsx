@@ -31,7 +31,7 @@ const Slide = () => {
                 </div>
             </Carousel>
             <button>
-                <Link to="/sign_in" className="slide__link">Next</Link>
+                <Link to="/sing_in" className="slide__link">Next</Link>
             </button>
         </section>
     )

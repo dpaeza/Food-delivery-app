@@ -2,9 +2,9 @@ import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Splash from "../components/splash/Splash.jsx";
 import Slide from "../components/slide/Slide.jsx";
-import SignIn from "../components/singIn/SignIn.jsx";
+import Login from "../components/login/Login.jsx";
 import Verification from "../components/verification/Verification.jsx";
-import CreateAcount from "../components/createAcount/CreateAcount.jsx";
+import CreateAccount from "../components/createAccount/CreateAccount.jsx";
 import Location from "../components/location/Location.jsx";
 import Home from "../components/home/Home.jsx";
 import Search from "../components/search/Search.jsx";
@@ -17,9 +17,9 @@ const RouterDom = () => {
             <Routes>
                 <Route path="/" element={<Splash />} />
                 <Route path="/slide" element={<Slide />} />
-                <Route path="/sign_in" element={<SignIn />} />
+                <Route path="/login" element={<Login />} />
                 <Route path="/verification" element={<Verification />} />
-                <Route path="/create_acount" element={<CreateAcount />} />
+                <Route path="/create_account" element={<CreateAccount />} />
                 <Route path="/location" element={<Location />} />
                 <Route path="/home" element={<Home />} />
                 <Route path="/search" element={<Search />} />

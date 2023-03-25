@@ -1,0 +1,91 @@
+.login{
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 22px 16px;
+
+    h1{
+        margin-top: 25px;
+        margin-bottom: 10px;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 23px;
+        text-align: center;
+        color: #414141;
+    }
+
+    &__p{
+        font-weight: 300;
+        font-size: 14px;
+        line-height: 16px;
+        text-align: center;
+        color: #414141;
+        margin-bottom: 33px;
+    }
+
+    &__methos__container{
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    &__phone, &__facebook, &__google{
+        display: flex;
+        gap: 20px;
+        width: 360px;
+        height: 50px;
+        padding: 5px 10px;
+        align-items: center;
+        border-radius: 10px;
+        color: #ffffff;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 16px;
+        cursor: pointer;
+        
+        img{
+            height: 30px;
+            width: 30px;
+        }
+    }
+
+    &__phone:hover, &__facebook:hover, &__google:hover{
+        box-shadow: 3px 3px 8px -3px rgba(161,146,109,0.74);
+    }
+
+    &__phone{
+        background-color: #43c4a5;
+    }
+    
+    &__facebook{
+        background-color: #3c589a;
+    }
+
+    &__google{
+        background-color: #de4b38;
+    }
+
+    &__footerText{
+        font-weight: 300;
+        font-size: 10px;
+        line-height: 22px;
+        letter-spacing: -0.408px;
+        color: #414141;
+        align-self: flex-start;
+        margin-top: 20px;
+
+        &__subrayado{
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    }
+}
+
+.createAccount__Link{
+    color: #414141;
+    font-weight: 500;
+    font-size: 15px;
+    margin-left: 4px;
+}

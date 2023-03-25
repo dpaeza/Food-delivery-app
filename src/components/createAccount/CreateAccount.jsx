@@ -1,10 +1,10 @@
 import React from "react";
 
-const SignIn = () => {
+const CreateAccount = () => {
 
     return (
         <></>
     )
 }
 
-export default SignIn
+export default CreateAccount
