@@ -13,18 +13,20 @@ const Login = () => {
             </figure>
             <h1>Login</h1>
             <p className="login__p">
-                Login with your phone number, Google or Facebook or 
+                Login with your phone number, Google or Facebook or
                 <Link className="createAccount__Link" to="/create_account">
                     create an account.
                 </Link>
             </p>
             <section className="login__methos__container">
-                <div className="login__phone">
-                    <figure>
-                        <img src={phone} alt="phone icon" />
-                    </figure>
-                    <span>Login with Phone number</span>
-                </div>
+                <Link to="/loginNumber" className="loginPhone__Link">
+                    <div className="login__phone">
+                        <figure>
+                            <img src={phone} alt="phone icon" />
+                        </figure>
+                        <span>Login with Phone number</span>
+                    </div>
+                </Link>
                 <div className="login__google">
                     <figure>
                         <img src={google} alt="google icon" />

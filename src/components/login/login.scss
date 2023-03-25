@@ -57,6 +57,7 @@
 
     &__phone{
         background-color: #43c4a5;
+        
     }
     
     &__facebook{
@@ -88,4 +89,8 @@
     font-weight: 500;
     font-size: 15px;
     margin-left: 4px;
+}
+
+.loginPhone__Link{
+    text-decoration: none;
 }
