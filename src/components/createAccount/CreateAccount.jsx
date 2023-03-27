@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const CreateAccount = () => {
 
@@ -20,6 +21,12 @@ const CreateAccount = () => {
                             <label>PASSWORD</label>
                             <input type="password" />
                         </div>
+                        <p className="createAccount__p">
+                            Do you already have an account? 
+                            <Link to="/login" className="createAccount__p__link">
+                                Log in
+                            </Link>
+                        </p>
                     </section>
                     <button>Sing in</button>
                 </form>

@@ -68,6 +68,22 @@
             cursor: pointer;
         }
     }
+
+    &__p{
+        margin-top: 15px;
+        font-weight: 300;
+        font-size: 11px;
+        line-height: 22px;
+        letter-spacing: -0.408px;
+        color: #414141;
+
+        &__link{
+            font-weight: 500;
+            color: #414141;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    }
 }
 
 @media (max-width: 730px) {
