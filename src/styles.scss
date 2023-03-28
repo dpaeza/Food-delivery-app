@@ -25,6 +25,17 @@ body {
     font-family: 'Roboto', sans-serif;
 };
 
+.swal2-styled.swal2-confirm {
+    background-color: #FFE031;
+    color: #414141;
+    border: none;
+}
+
+.swal2-confirm,
+.swal2-cancel {
+  border: none !important;
+}
+
 
 
 

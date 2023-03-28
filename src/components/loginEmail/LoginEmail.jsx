@@ -6,11 +6,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { userLoginEmailAsync } from "../../redux/actions/userActions";
 import Swal from "sweetalert2";
 import { useEffect } from "react";
+import { showAlert } from "../../helpers/swithAlerts";
 
 const LoginEmail = () => {
-
     const dispatch = useDispatch();
-    const user = useSelector((state)=> state.user);
+    const user = useSelector((state) => state.user);
     const {
         register,
         handleSubmit,
@@ -21,6 +21,21 @@ const LoginEmail = () => {
         console.log(data);
         dispatch(userLoginEmailAsync(data));
     };
+
+    useEffect(() => {
+        if (user.error) {
+            showAlert({
+                icon: "error",
+                title: "Oppss...",
+                text: "Wrong email or password",
+            });
+        } else {
+            showAlert({
+                icon: "success",
+                text: "Login successful",
+            });
+        }
+    }, [user.error]);
 
     return (
         <section className="createAccount loginEmail">
