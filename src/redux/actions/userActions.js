@@ -42,11 +42,13 @@ const userLoginEmail = (user) => {
 export const userLoginEmailAsync = ({ email, password }) => {
     return async (dispatch) => {
         try {
+            // signInWithEmailAndPassword metodo de Firebase que permite loguear
             const user = await signInWithEmailAndPassword(
                 auth,
                 email,
                 password
             );
+            // Se ejecuta la funcion sincrona pasandole name, email y error en false
             dispatch(
                 userLoginEmail({
                     name: user.user.displayName,
@@ -57,6 +59,7 @@ export const userLoginEmailAsync = ({ email, password }) => {
             console.log(user);
             console.log("llegue hasta aquí");
         } catch (error) {
+            // Se ejecuta la funcion sincrona pasandole name, email y error en true
             dispatch(
                 userLoginEmail({
                     name: "",

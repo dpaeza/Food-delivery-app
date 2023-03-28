@@ -18,7 +18,7 @@ const CreateAccount = () => {
 
     const submitSigIn = (data) => {
         console.log(data);
-        // dispatch(userRegisterAsync(data));
+        dispatch(userRegisterAsync(data));
     };
 
     return (
