@@ -18,7 +18,7 @@ const CreateAccount = () => {
 
     const submitSigIn = (data) => {
         console.log(data);
-        dispatch(userRegisterAsync(data));
+        // dispatch(userRegisterAsync(data));
     };
 
     return (
@@ -75,18 +75,110 @@ const CreateAccount = () => {
                                 <></>
                             )}
                         </div>
+                        <div>
+                            <label>PHONE NUMBER</label>
+                            <input
+                                type="number"
+                                {...register("phone", {
+                                    required: "Phone number is required",
+                                })}
+                            />
+                            {errors.phone ? (
+                                <span className="createAccount__error">
+                                    {errors.phone.message}
+                                </span>
+                            ) : (
+                                <></>
+                            )}
+                        </div>
+                        <div>
+                            <label>CITY</label>
+                            <input
+                                type="text"
+                                {...register("city", {
+                                    required: "City is required",
+                                })}
+                            />
+                            {errors.city ? (
+                                <span className="createAccount__error">
+                                    {errors.city.message}
+                                </span>
+                            ) : (
+                                <></>
+                            )}
+                        </div>
+                        <div>
+                            <label>ADDRESS</label>
+                            <input
+                                type="text"
+                                {...register("address", {
+                                    required: "Address is required",
+                                })}
+                            />
+                            {errors.address ? (
+                                <span className="createAccount__error">
+                                    {errors.address.message}
+                                </span>
+                            ) : (
+                                <></>
+                            )}
+                        </div>
+                        <div>
+                            <label>BIRTHDAY DATE</label>
+                            <input
+                                type="date"
+                                {...register("birthday", {
+                                    required: "Birthday is required",
+                                })}
+                            />
+                            {errors.birthday ? (
+                                <span className="createAccount__error">
+                                    {errors.birthday.message}
+                                </span>
+                            ) : (
+                                <></>
+                            )}
+                        </div>
+                        <div>
+                            <label>PROFILE PICTURE</label>
+                            <input
+                                type="url"
+                                {...register("picture", {
+                                    required: "Profile picture is required",
+                                })}
+                            />
+                            {errors.picture ? (
+                                <span className="createAccount__error">
+                                    {errors.picture.message}
+                                </span>
+                            ) : (
+                                <></>
+                            )}
+                        </div>
                         <p className="createAccount__p">
                             Do you already have an account?
                             <Link
                                 to="/login"
                                 className="createAccount__p__link"
                             >
-                                Log in
+                                Login
                             </Link>
                         </p>
                     </section>
-                    {loadingCreate ? <UseAnimations animation={loading} size={40} className="createAccount__loading"/> : <></>}
-                    {loadingCreate ? <></> : <button disabled={loadingCreate}>Sing in</button>}
+                    {loadingCreate ? (
+                        <UseAnimations
+                            animation={loading}
+                            size={40}
+                            className="createAccount__loading"
+                        />
+                    ) : (
+                        <></>
+                    )}
+                    {loadingCreate ? (
+                        <></>
+                    ) : (
+                        <button disabled={loadingCreate}>Sing in</button>
+                    )}
                 </form>
             </section>
         </section>
