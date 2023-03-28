@@ -3,11 +3,13 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { userRegisterAsync } from "../../redux/actions/userActions";
+import UseAnimations from "react-useanimations";
+import loading from 'react-useanimations/lib/loading';
 
 const CreateAccount = () => {
 
     const dispatch = useDispatch();
-    const loading = useSelector((state)=>state.loadingCreateAccount)
+    const loadingCreate = useSelector((state)=>state.loadingCreateAccount)
     const {
         register,
         handleSubmit,
@@ -83,8 +85,8 @@ const CreateAccount = () => {
                             </Link>
                         </p>
                     </section>
-                    {loading ? <span>Loading...</span> : <></>}
-                    <button disabled={loading}>Sing in</button>
+                    {loadingCreate ? <UseAnimations animation={loading} size={40} className="createAccount__loading"/> : <></>}
+                    {loadingCreate ? <></> : <button disabled={loadingCreate}>Sing in</button>}
                 </form>
             </section>
         </section>

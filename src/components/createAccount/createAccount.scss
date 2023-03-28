@@ -92,6 +92,10 @@
         line-height: 22px;
         color: red;
     }
+
+    &__loading{
+        align-self: center;
+    }
 }
 
 @media (max-width: 730px) {
