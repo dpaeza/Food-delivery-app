@@ -13,12 +13,7 @@ const Login = () => {
                 <img src={logo} alt="logo icon" />
             </figure>
             <h1>Login</h1>
-            <p className="login__p">
-                Login with your phone number, Google or Facebook or
-                <Link className="createAccount__Link" to="/create_account">
-                    create an account.
-                </Link>
-            </p>
+
             <section className="login__methos__container">
                 <Link to="/loginNumber" className="loginPhone__Link">
                     <div className="login__phone">
@@ -49,6 +44,12 @@ const Login = () => {
                     <span>Login with Facebook</span>
                 </div>
             </section>
+            <p className="login__p">
+                You don't have an account?
+                <Link className="createAccount__Link" to="/create_account">
+                    Register with your email.
+                </Link>
+            </p>
             <div className="login__footerText">
                 <p>By clicking the button next you accept</p>
                 <p className="login__footerText__subrayado">Terms of use</p>
