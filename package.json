@@ -18,6 +18,7 @@
     "react-scripts": "5.0.1",
     "react-useanimations": "^2.10.0",
     "sass": "^1.59.3",
+    "sweetalert2": "^11.7.3",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

@@ -12,7 +12,7 @@ const Location = () => {
                         on the map
                     </p>
                     <figure>
-                        <img src={map} alt="map image" />
+                        <img src={map} alt="map" />
                     </figure>
                     <p className="location__whereIam">Where I am ?</p>
                     <input type="text" />
