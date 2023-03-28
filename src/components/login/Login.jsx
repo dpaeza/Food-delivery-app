@@ -4,6 +4,7 @@ import logo from "../../assets/main_icon.svg";
 import phone from "../../assets/phone.svg";
 import google from "../../assets/google.svg";
 import facebook from "../../assets/facebook.svg";
+import emailIcon from "../../assets/email.png";
 
 const Login = () => {
     return (
@@ -25,6 +26,14 @@ const Login = () => {
                             <img src={phone} alt="phone icon" />
                         </figure>
                         <span>Login with Phone number</span>
+                    </div>
+                </Link>
+                <Link to="/loginNumber" className="loginPhone__Link">
+                    <div className="login__email">
+                        <figure>
+                            <img src={emailIcon} alt="phone icon" />
+                        </figure>
+                        <span>Login with Email and password</span>
                     </div>
                 </Link>
                 <div className="login__google">

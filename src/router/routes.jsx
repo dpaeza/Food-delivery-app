@@ -11,6 +11,7 @@ import Home from "../components/home/Home.jsx";
 import Search from "../components/search/Search.jsx";
 import Orders from "../components/orders/Orders.jsx";
 import Profile from "../components/profile/Profile.jsx";
+import LoginEmail from "../components/loginEmail/LoginEmail.jsx";
 
 const RouterDom = () => {
     return (
@@ -20,6 +21,7 @@ const RouterDom = () => {
                 <Route path="/slide" element={<Slide />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/loginNumber" element={<LoginNumber />} />
+                <Route path="/loginEmail" element={<LoginEmail/>} />
                 <Route path="/verification" element={<Verification />} />
                 <Route path="/create_account" element={<CreateAccount />} />
                 <Route path="/location" element={<Location />} />
