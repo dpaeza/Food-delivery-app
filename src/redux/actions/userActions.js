@@ -18,12 +18,16 @@ const userRegister = ({ nombre, email, error }) => {
     };
 };
 
-export const userRegisterAsync = ({ name, email, password }) => {
+export const userRegisterAsync = ({ name, email, password, phone, picture }) => {
     return async (dispatch) => {
         try {
             dispatch(toogleLoading());
             await createUserWithEmailAndPassword(auth, email, password);
-            await updateProfile(auth.currentUser, { displayName: name });
+            await updateProfile(auth.currentUser, {
+                displayName: name,
+                phoneNumber: phone,
+                photoURL: picture,
+            });
             dispatch(userRegister({ name, email, error: false }));
             dispatch(toogleLoading());
         } catch (error) {

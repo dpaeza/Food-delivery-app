@@ -23,7 +23,7 @@ const LoginEmail = () => {
     };
 
     return (
-        <section className="createAccount">
+        <section className="createAccount loginEmail">
             <section className="createAccount__modal">
                 <h1>Login</h1>
                 <form onSubmit={handleSubmit(submitLogin)}>

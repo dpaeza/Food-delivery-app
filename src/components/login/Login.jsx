@@ -13,7 +13,6 @@ const Login = () => {
                 <img src={logo} alt="logo icon" />
             </figure>
             <h1>Login</h1>
-
             <section className="login__methos__container">
                 <Link to="/loginNumber" className="loginPhone__Link">
                     <div className="login__phone">
@@ -23,7 +22,7 @@ const Login = () => {
                         <span>Login with Phone number</span>
                     </div>
                 </Link>
-                <Link to="/loginNumber" className="loginPhone__Link">
+                <Link to="/loginEmail" className="loginPhone__Link">
                     <div className="login__email">
                         <figure>
                             <img src={emailIcon} alt="phone icon" />
