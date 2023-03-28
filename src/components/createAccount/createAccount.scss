@@ -84,6 +84,14 @@
             cursor: pointer;
         }
     }
+
+    &__error{
+        margin-top: 10px;
+        font-weight: 300;
+        font-size: 12px;
+        line-height: 22px;
+        color: red;
+    }
 }
 
 @media (max-width: 730px) {
