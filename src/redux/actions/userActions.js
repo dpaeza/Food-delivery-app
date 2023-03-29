@@ -82,7 +82,7 @@ export const userLoginEmailAsync = ({ email, password }) => {
     };
 };
 
-export const userLoginGoogle = (provider) => {
+export const userLoginProvider = (provider) => {
     return async (dispatch) => {
         try {
             const { user } = await signInWithPopup(auth, provider);

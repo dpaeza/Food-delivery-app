@@ -3,19 +3,18 @@ import { Link } from "react-router-dom";
 import logo from "../../assets/main_icon.svg";
 import phone from "../../assets/phone.svg";
 import googleIcon from "../../assets/google.svg";
-import facebook from "../../assets/facebook.svg";
+import facebookIcon from "../../assets/facebook.svg";
 import emailIcon from "../../assets/email.png";
 import { useDispatch } from "react-redux";
-import { userLoginGoogle } from "../../redux/actions/userActions";
-import { google } from "../../firebase/firebaseConfig";
+import { userLoginProvider } from "../../redux/actions/userActions";
+import { google, facebook } from "../../firebase/firebaseConfig";
 
 const Login = () => {
-
     const dispatch = useDispatch();
 
-    const handleLoginGoogle = () => {
-        dispatch(userLoginGoogle(google))
-    }
+    const sesionProvider = (provider) => {
+        dispatch(userLoginProvider(provider));
+    };
 
     return (
         <section className="login">
@@ -40,15 +39,21 @@ const Login = () => {
                         <span>Login with Email and password</span>
                     </div>
                 </Link>
-                <div className="login__google" onClick={handleLoginGoogle}>
+                <div
+                    className="login__google"
+                    onClick={() => sesionProvider(google)}
+                >
                     <figure>
                         <img src={googleIcon} alt="google icon" />
                     </figure>
                     <span>Login with Google</span>
                 </div>
-                <div className="login__facebook">
+                <div
+                    className="login__facebook"
+                    onClick={() => sesionProvider(facebook)}
+                >
                     <figure>
-                        <img src={facebook} alt="facebook icon" />
+                        <img src={facebookIcon} alt="facebook icon" />
                     </figure>
                     <span>Login with Facebook</span>
                 </div>
