@@ -2,11 +2,21 @@ import React from "react";
 import { Link } from "react-router-dom";
 import logo from "../../assets/main_icon.svg";
 import phone from "../../assets/phone.svg";
-import google from "../../assets/google.svg";
+import googleIcon from "../../assets/google.svg";
 import facebook from "../../assets/facebook.svg";
 import emailIcon from "../../assets/email.png";
+import { useDispatch } from "react-redux";
+import { userLoginGoogle } from "../../redux/actions/userActions";
+import { google } from "../../firebase/firebaseConfig";
 
 const Login = () => {
+
+    const dispatch = useDispatch();
+
+    const handleLoginGoogle = () => {
+        dispatch(userLoginGoogle(google))
+    }
+
     return (
         <section className="login">
             <figure>
@@ -30,9 +40,9 @@ const Login = () => {
                         <span>Login with Email and password</span>
                     </div>
                 </Link>
-                <div className="login__google">
+                <div className="login__google" onClick={handleLoginGoogle}>
                     <figure>
-                        <img src={google} alt="google icon" />
+                        <img src={googleIcon} alt="google icon" />
                     </figure>
                     <span>Login with Google</span>
                 </div>

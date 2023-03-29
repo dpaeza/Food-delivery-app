@@ -3,6 +3,7 @@ import { auth } from "../../firebase/firebaseConfig";
 import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
+    signInWithPopup,
     updateProfile,
 } from "firebase/auth";
 import { toogleLoading } from "./loadingActions";
@@ -18,7 +19,13 @@ const userRegister = ({ nombre, email, error }) => {
     };
 };
 
-export const userRegisterAsync = ({ name, email, password, phone, picture }) => {
+export const userRegisterAsync = ({
+    name,
+    email,
+    password,
+    phone,
+    picture,
+}) => {
     return async (dispatch) => {
         try {
             dispatch(toogleLoading());
@@ -71,6 +78,31 @@ export const userLoginEmailAsync = ({ email, password }) => {
                     error: true,
                 })
             );
+        }
+    };
+};
+
+export const userLoginGoogle = (provider) => {
+    return async (dispatch) => {
+        try {
+            const { user } = await signInWithPopup(auth, provider);
+            console.log(user)
+            dispatch(
+                userLoginEmail({
+                    name: user.displayName,
+                    email: user.email,
+                    error: false,
+                })
+            );
+        } catch (error) {
+            dispatch(
+                userLoginEmail({
+                    name: "",
+                    email: "",
+                    error: true,
+                })
+            );
+            console.log(error);
         }
     };
 };

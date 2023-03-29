@@ -7,9 +7,11 @@ import { userLoginEmailAsync } from "../../redux/actions/userActions";
 import Swal from "sweetalert2";
 import { useEffect } from "react";
 import { showAlert } from "../../helpers/swithAlerts";
+import { useNavigate } from "react-router-dom";
 
 const LoginEmail = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const user = useSelector((state) => state.user);
     const {
         register,
@@ -29,11 +31,13 @@ const LoginEmail = () => {
                 title: "Oppss...",
                 text: "Wrong email or password",
             });
-        } else {
+        }
+        if (!user.error && user.email !== '') {
             showAlert({
                 icon: "success",
                 text: "Login successful",
             });
+            navigate("/home");
         }
     }, [user.error]);
 
