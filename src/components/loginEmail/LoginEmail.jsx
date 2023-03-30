@@ -8,6 +8,18 @@ import Swal from "sweetalert2";
 import { useEffect } from "react";
 import { showAlert } from "../../helpers/swithAlerts";
 import { useNavigate } from "react-router-dom";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+
+const schema = yup
+    .object({
+        email: yup.string().required("Email is required"),
+        password: yup
+            .string()
+            .required("Password is required")
+            .min(6, "Password must be at least 6 characters long")
+    })
+    .required();
 
 const LoginEmail = () => {
     const dispatch = useDispatch();
@@ -17,7 +29,7 @@ const LoginEmail = () => {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm();
+    } = useForm({ resolver: yupResolver(schema) });
 
     const submitLogin = (data) => {
         console.log(data);
@@ -51,9 +63,7 @@ const LoginEmail = () => {
                             <label>EMAIL</label>
                             <input
                                 type="email"
-                                {...register("email", {
-                                    required: "Email is required",
-                                })}
+                                {...register("email")}
                             />
                             {errors.email ? (
                                 <span className="createAccount__error">
@@ -67,9 +77,7 @@ const LoginEmail = () => {
                             <label>PASSWORD</label>
                             <input
                                 type="password"
-                                {...register("password", {
-                                    required: "Password is required",
-                                })}
+                                {...register("password")}
                             />
                             {errors.password ? (
                                 <span className="createAccount__error">
