@@ -10,14 +10,21 @@ import *as yup from 'yup';
 
 const numberRegex = /^[0-9]{10}$/;
 
-const schema = yup.object({
-    phone: yup
-        // .number("The value entered must be a number")
-        .matches(numberRegex, {
-            message: "The phone number must be 10 digits"
-        })
-        .required("Phone number is required"),
-}).required();
+const schema = yup
+    .object({
+        name: yup.string().required("Name is required"),
+        email: yup.string().required("Email is required"),
+        password: yup.string().required("Password is required"),
+        phone: yup
+            .string()
+            .required("Phone number is required")
+            .matches(numberRegex, "The phone number must be 10 digits"),
+        city: yup.string().required("City is required"),
+        address: yup.string().required("Address is required"),
+        birthday: yup.string().required("Birthday is required"),
+        picture: yup.string().required("Profile picture is required")
+    })
+    .required();
 
 const CreateAccount = () => {
 
@@ -44,9 +51,7 @@ const CreateAccount = () => {
                             <label>NAME</label>
                             <input
                                 type="text"
-                                {...register("name", {
-                                    required: "Name is required",
-                                })}
+                                {...register("name")}
                             />
                             {errors.name ? (
                                 <span className="createAccount__error">
@@ -60,9 +65,7 @@ const CreateAccount = () => {
                             <label>EMAIL</label>
                             <input
                                 type="email"
-                                {...register("email", {
-                                    required: "Email is required",
-                                })}
+                                {...register("email")}
                             />
                             {errors.email ? (
                                 <span className="createAccount__error">
@@ -76,9 +79,7 @@ const CreateAccount = () => {
                             <label>PASSWORD</label>
                             <input
                                 type="password"
-                                {...register("password", {
-                                    required: "Password is required",
-                                })}
+                                {...register("password")}
                             />
                             {errors.password ? (
                                 <span className="createAccount__error">
@@ -92,9 +93,7 @@ const CreateAccount = () => {
                             <label>PHONE NUMBER</label>
                             <input
                                 type="number"
-                                {...register("phone", {
-                                    required: "Phone number is required",
-                                })}
+                                {...register("phone")}
                             />
                             {errors.phone ? (
                                 <span className="createAccount__error">
@@ -108,9 +107,7 @@ const CreateAccount = () => {
                             <label>CITY</label>
                             <input
                                 type="text"
-                                {...register("city", {
-                                    required: "City is required",
-                                })}
+                                {...register("city")}
                             />
                             {errors.city ? (
                                 <span className="createAccount__error">
@@ -124,9 +121,7 @@ const CreateAccount = () => {
                             <label>ADDRESS</label>
                             <input
                                 type="text"
-                                {...register("address", {
-                                    required: "Address is required",
-                                })}
+                                {...register("address")}
                             />
                             {errors.address ? (
                                 <span className="createAccount__error">
@@ -140,9 +135,7 @@ const CreateAccount = () => {
                             <label>BIRTHDAY DATE</label>
                             <input
                                 type="date"
-                                {...register("birthday", {
-                                    required: "Birthday is required",
-                                })}
+                                {...register("birthday")}
                             />
                             {errors.birthday ? (
                                 <span className="createAccount__error">
@@ -156,9 +149,7 @@ const CreateAccount = () => {
                             <label>PROFILE PICTURE</label>
                             <input
                                 type="url"
-                                {...register("picture", {
-                                    required: "Profile picture is required",
-                                })}
+                                {...register("picture")}
                             />
                             {errors.picture ? (
                                 <span className="createAccount__error">
