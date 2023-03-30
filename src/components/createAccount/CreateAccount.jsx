@@ -5,6 +5,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { userRegisterAsync } from "../../redux/actions/userActions";
 import UseAnimations from "react-useanimations";
 import loading from 'react-useanimations/lib/loading';
+import { yupResolver } from "@hookform/resolvers/yup";
+import *as yup from 'yup';
+
+const numberRegex = /^[0-9]{10}$/;
+
+const schema = yup.object({
+    phone: yup
+        // .number("The value entered must be a number")
+        .matches(numberRegex, {
+            message: "The phone number must be 10 digits"
+        })
+        .required("Phone number is required"),
+}).required();
 
 const CreateAccount = () => {
 
@@ -14,7 +27,7 @@ const CreateAccount = () => {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm();
+    } = useForm({ resolver: yupResolver(schema) });
 
     const submitSigIn = (data) => {
         console.log(data);
