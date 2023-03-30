@@ -37,7 +37,7 @@ const CreateAccount = () => {
     const {
         register,
         handleSubmit,
-        formState: { errors },
+        formState: { errors }
     } = useForm({ resolver: yupResolver(schema) });
 
     const submitSigIn = (data) => {

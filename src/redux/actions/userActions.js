@@ -23,6 +23,7 @@ export const userRegisterAsync = ({
     name,
     email,
     password,
+    prefi,
     phone,
     picture,
 }) => {
@@ -30,9 +31,9 @@ export const userRegisterAsync = ({
         try {
             dispatch(toogleLoading());
             await createUserWithEmailAndPassword(auth, email, password);
-            await updateProfile(auth.currentUser, {
+            updateProfile(auth.currentUser, {
                 displayName: name,
-                phoneNumber: phone,
+                phoneNumber: prefi + phone,
                 photoURL: picture,
             });
             dispatch(userRegister({ name, email, error: false }));
