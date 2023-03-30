@@ -18,6 +18,7 @@ const schema = yup
             .string()
             .required("Password is required")
             .min(6, "Password must be at least 6 characters long"),
+        prefi: yup.string().required("The country code is required"),
         phone: yup
             .string()
             .required("Phone number is required")
@@ -25,7 +26,7 @@ const schema = yup
         city: yup.string().required("City is required"),
         address: yup.string().required("Address is required"),
         birthday: yup.string().required("Birthday is required"),
-        picture: yup.string().required("Profile picture is required")
+        picture: yup.string().required("Profile picture is required"),
     })
     .required();
 
@@ -52,10 +53,7 @@ const CreateAccount = () => {
                     <section>
                         <div>
                             <label>NAME</label>
-                            <input
-                                type="text"
-                                {...register("name")}
-                            />
+                            <input type="text" {...register("name")} />
                             {errors.name ? (
                                 <span className="createAccount__error">
                                     {errors.name.message}
@@ -66,10 +64,7 @@ const CreateAccount = () => {
                         </div>
                         <div>
                             <label>EMAIL</label>
-                            <input
-                                type="email"
-                                {...register("email")}
-                            />
+                            <input type="email" {...register("email")} />
                             {errors.email ? (
                                 <span className="createAccount__error">
                                     {errors.email.message}
@@ -80,10 +75,7 @@ const CreateAccount = () => {
                         </div>
                         <div>
                             <label>PASSWORD</label>
-                            <input
-                                type="password"
-                                {...register("password")}
-                            />
+                            <input type="password" {...register("password")} />
                             {errors.password ? (
                                 <span className="createAccount__error">
                                     {errors.password.message}
@@ -94,10 +86,19 @@ const CreateAccount = () => {
                         </div>
                         <div>
                             <label>PHONE NUMBER</label>
-                            <input
-                                type="number"
-                                {...register("phone")}
-                            />
+                            <div className="createAccount__number">
+                                <p>+</p>
+                                <input
+                                    type="number"
+                                    className="createAccount__number__prefi"
+                                    {...register("prefi")}
+                                ></input>
+                                <input
+                                    type="number"
+                                    className="createAccount__number__number"
+                                    {...register("phone")}
+                                />
+                            </div>
                             {errors.phone ? (
                                 <span className="createAccount__error">
                                     {errors.phone.message}
@@ -105,13 +106,17 @@ const CreateAccount = () => {
                             ) : (
                                 <></>
                             )}
+                            {errors.prefi ? (
+                                <span className="createAccount__error">
+                                    {errors.prefi.message}
+                                </span>
+                            ) : (
+                                <></>
+                            )}
                         </div>
                         <div>
                             <label>CITY</label>
-                            <input
-                                type="text"
-                                {...register("city")}
-                            />
+                            <input type="text" {...register("city")} />
                             {errors.city ? (
                                 <span className="createAccount__error">
                                     {errors.city.message}
@@ -122,10 +127,7 @@ const CreateAccount = () => {
                         </div>
                         <div>
                             <label>ADDRESS</label>
-                            <input
-                                type="text"
-                                {...register("address")}
-                            />
+                            <input type="text" {...register("address")} />
                             {errors.address ? (
                                 <span className="createAccount__error">
                                     {errors.address.message}
@@ -136,10 +138,7 @@ const CreateAccount = () => {
                         </div>
                         <div>
                             <label>BIRTHDAY DATE</label>
-                            <input
-                                type="date"
-                                {...register("birthday")}
-                            />
+                            <input type="date" {...register("birthday")} />
                             {errors.birthday ? (
                                 <span className="createAccount__error">
                                     {errors.birthday.message}
@@ -150,10 +149,7 @@ const CreateAccount = () => {
                         </div>
                         <div>
                             <label>PROFILE PICTURE</label>
-                            <input
-                                type="url"
-                                {...register("picture")}
-                            />
+                            <input type="url" {...register("picture")} />
                             {errors.picture ? (
                                 <span className="createAccount__error">
                                     {errors.picture.message}
