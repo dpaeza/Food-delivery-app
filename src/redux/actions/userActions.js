@@ -45,6 +45,12 @@ export const userRegisterAsync = ({
     };
 };
 
+const toggleLogin = () => {
+    return {
+        type: userTypes.TOGGLE_LOGIN,
+    };
+};
+
 export const userLoginEmail = (user) => {
     return {
         type: userTypes.LOGIN_USER_EMAIL_AND_PASSWORD,
@@ -69,6 +75,7 @@ export const userLoginEmailAsync = ({ email, password }) => {
                     error: false,
                 })
             );
+            dispatch(toggleLogin());
             console.log(user);
             console.log("llegue hasta aquí");
         } catch (error) {
@@ -96,6 +103,7 @@ export const userLoginProvider = (provider) => {
                     error: false,
                 })
             );
+            dispatch(toggleLogin());
         } catch (error) {
             dispatch(
                 userLoginEmail({

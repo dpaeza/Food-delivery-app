@@ -4,6 +4,7 @@ const initialState = {
     name: "",
     email: "",
     error: false,
+    isLogged: false,
 };
 
 export const userReducer = (state = initialState, action) => {
@@ -15,13 +16,18 @@ export const userReducer = (state = initialState, action) => {
                 email: action.payload.email,
                 error: action.payload.error,
             };
+        case userTypes.TOGGLE_LOGIN:
+            return {
+                ...state,
+                isLogged: !state.isLogged,
+            };
         case userTypes.LOGIN_USER_EMAIL_AND_PASSWORD:
             return {
-                ...action.payload
+                ...action.payload,
             };
         case userTypes.DO_LOGOUT:
             return {
-                initialState
+                initialState,
             };
         default:
             return initialState;
