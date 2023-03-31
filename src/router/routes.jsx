@@ -16,25 +16,25 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../firebase/firebaseConfig.js";
 import { useDispatch } from "react-redux";
 import { userLoginEmail } from "../redux/actions/userActions.js";
+import PrivateRoutes from "./PrivateRoutes.jsx";
 
 const RouterDom = () => {
-
     const dispatch = useDispatch();
 
     useEffect(() => {
-        onAuthStateChanged(auth, (user) => { 
-            console.log(user)
+        onAuthStateChanged(auth, (user) => {
+            console.log(user);
             if (user?.uid) {
                 dispatch(
                     userLoginEmail({
                         name: user.displayName,
                         email: user.email,
                         error: false,
-                        isLogged: true
+                        isLogged: true,
                     })
                 );
             }
-        } )
+        });
     }, []);
 
     return (
@@ -44,17 +44,24 @@ const RouterDom = () => {
                 <Route path="/slide" element={<Slide />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/loginNumber" element={<LoginNumber />} />
-                <Route path="/loginEmail" element={<LoginEmail/>} />
+                <Route path="/loginEmail" element={<LoginEmail />} />
                 <Route path="/verification" element={<Verification />} />
                 <Route path="/create_account" element={<CreateAccount />} />
                 <Route path="/location" element={<Location />} />
-                <Route path="/home" element={<Home />} />
+                <Route
+                    path="/home"
+                    element={
+                        <PrivateRoutes>
+                            <Home />
+                        </PrivateRoutes>
+                    }
+                />
                 <Route path="/search" element={<Search />} />
                 <Route path="/orders" element={<Orders />} />
                 <Route path="/profile" element={<Profile />} />
             </Routes>
         </BrowserRouter>
     );
-}
+};
 
-export default RouterDom
+export default RouterDom;
