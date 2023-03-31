@@ -1,8 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import logo from "../../assets/main_icon.svg";
 import phoneGrey from "../../assets/phone_grey.svg"
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const LoginNumber = () => {
+
+    const navigate = useNavigate();
+    const user = useSelector((state) => state.user);
+
+    //Use effect para redirija al usuario a home si ya está loggueado
+    useEffect(() => {
+        if (user.isLogged) {
+            navigate("/home");
+        }
+    }, [user.isLogged]);
 
     return (
         <section className="login">

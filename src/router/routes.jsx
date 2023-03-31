@@ -30,6 +30,7 @@ const RouterDom = () => {
                         name: user.displayName,
                         email: user.email,
                         error: false,
+                        isLogged: true
                     })
                 );
             }

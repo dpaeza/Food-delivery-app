@@ -1,12 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import slide_1 from "../../assets/slide_1.svg";
 import slide_2 from "../../assets/slide_2.svg";
 import slide_3 from "../../assets/slide_3.svg";
+import { useSelector } from "react-redux";
 
 const Slide = () => {
+
+    const navigate = useNavigate();
+    const user = useSelector((state) => state.user);
+
+    //Use effect para redirija al usuario a home si ya está loggueado
+    useEffect(() => {
+        if (user.isLogged) {
+            navigate("/home");
+        }
+    }, [user.isLogged]);
 
     return (
         <section className="slide">

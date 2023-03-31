@@ -1,10 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-// import UseAnimations from "react-useanimations";
-// import loading from "react-useanimations/lib/loading";
 import { userLoginEmailAsync } from "../../redux/actions/userActions";
-import Swal from "sweetalert2";
 import { useEffect } from "react";
 import { showAlert } from "../../helpers/swithAlerts";
 import { useNavigate } from "react-router-dom";
@@ -36,6 +33,7 @@ const LoginEmail = () => {
         dispatch(userLoginEmailAsync(data));
     };
 
+    //Use effect para mostrarle al usuario si pudo inicar sesión correctamente
     useEffect(() => {
         if (user.error) {
             showAlert({
@@ -54,6 +52,13 @@ const LoginEmail = () => {
         }
     }, [user.isLogged]);
 
+    //Use effect para redirija al usuario a home si ya está loggueado
+    useEffect(() => {
+        if (user.isLogged) {
+            navigate("/home");
+        }
+    }, [user.isLogged]);
+
     return (
         <section className="createAccount loginEmail">
             <section className="createAccount__modal">
@@ -62,10 +67,7 @@ const LoginEmail = () => {
                     <section>
                         <div>
                             <label>EMAIL</label>
-                            <input
-                                type="email"
-                                {...register("email")}
-                            />
+                            <input type="email" {...register("email")} />
                             {errors.email ? (
                                 <span className="createAccount__error">
                                     {errors.email.message}
@@ -76,10 +78,7 @@ const LoginEmail = () => {
                         </div>
                         <div>
                             <label>PASSWORD</label>
-                            <input
-                                type="password"
-                                {...register("password")}
-                            />
+                            <input type="password" {...register("password")} />
                             {errors.password ? (
                                 <span className="createAccount__error">
                                     {errors.password.message}

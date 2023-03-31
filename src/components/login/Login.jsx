@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/main_icon.svg";
 import phone from "../../assets/phone.svg";
 import googleIcon from "../../assets/google.svg";
@@ -8,10 +8,12 @@ import emailIcon from "../../assets/email.png";
 import { useDispatch, useSelector } from "react-redux";
 import { userLoginProvider } from "../../redux/actions/userActions";
 import { google, facebook } from "../../firebase/firebaseConfig";
+import { showAlert } from "../../helpers/swithAlerts";
 
 const Login = () => {
     const dispatch = useDispatch();
     const user = useSelector((state) => state.user);
+    const navigate = useNavigate();
 
     const sesionProvider = (provider) => {
         dispatch(userLoginProvider(provider));
@@ -21,6 +23,14 @@ const Login = () => {
     useEffect(() => {
         console.log(user)
     }, [user]);
+
+    //Use effect para redirija al usuario a home si ya está loggueado
+    useEffect(() => {
+        if (user.isLogged) {
+            navigate("/home");
+        }
+    }, [user.isLogged]);
+
 
     return (
         <section className="login">
