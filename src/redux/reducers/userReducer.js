@@ -19,6 +19,10 @@ export const userReducer = (state = initialState, action) => {
             return {
                 ...action.payload
             };
+        case userTypes.DO_LOGOUT:
+            return {
+                initialState
+            };
         default:
             return initialState;
     }

@@ -2,6 +2,7 @@ export const userTypes = {
     CREATE_USER: "CREATE_USER",
     LOGIN_USER_EMAIL_AND_PASSWORD: "LOGIN_USER_EMAIL_AND_PASSWORD",
     LOGIN_GOOGLE: "LOGIN_GOOGLE",
+    DO_LOGOUT: "DO_LOGOUT",
 };
 
 export const loadingTypes = {

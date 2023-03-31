@@ -1,20 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../assets/main_icon.svg";
 import phone from "../../assets/phone.svg";
 import googleIcon from "../../assets/google.svg";
 import facebookIcon from "../../assets/facebook.svg";
 import emailIcon from "../../assets/email.png";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { userLoginProvider } from "../../redux/actions/userActions";
 import { google, facebook } from "../../firebase/firebaseConfig";
 
 const Login = () => {
     const dispatch = useDispatch();
+    const user = useSelector((state) => state.user);
 
     const sesionProvider = (provider) => {
         dispatch(userLoginProvider(provider));
     };
+
+    //Borrar despues
+    useEffect(() => {
+        console.log(user)
+    }, [user]);
 
     return (
         <section className="login">

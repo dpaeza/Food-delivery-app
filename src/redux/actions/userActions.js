@@ -4,6 +4,7 @@ import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
     signInWithPopup,
+    signOut,
     updateProfile,
 } from "firebase/auth";
 import { toogleLoading } from "./loadingActions";
@@ -44,7 +45,7 @@ export const userRegisterAsync = ({
     };
 };
 
-const userLoginEmail = (user) => {
+export const userLoginEmail = (user) => {
     return {
         type: userTypes.LOGIN_USER_EMAIL_AND_PASSWORD,
         payload: user,
@@ -106,4 +107,21 @@ export const userLoginProvider = (provider) => {
             console.log(error);
         }
     };
+};
+
+const doLogout = () => {
+    return {
+        type: userTypes.DO_LOGOUT
+    }
+}
+
+export const doLogoutAsync = () => {
+    return async (dispatch) => {
+        try {
+            await signOut(auth);
+            dispatch(doLogout());
+        } catch (error) {
+            dispatch(doLogout());
+        }
+    }
 };

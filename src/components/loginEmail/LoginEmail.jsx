@@ -45,6 +45,7 @@ const LoginEmail = () => {
             });
         }
         if (!user.error && user.email !== '') {
+            console.log(user)
             showAlert({
                 icon: "success",
                 text: "Login successful",

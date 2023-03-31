@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Splash from "../components/splash/Splash.jsx";
 import Slide from "../components/slide/Slide.jsx";
@@ -12,8 +12,30 @@ import Search from "../components/search/Search.jsx";
 import Orders from "../components/orders/Orders.jsx";
 import Profile from "../components/profile/Profile.jsx";
 import LoginEmail from "../components/loginEmail/LoginEmail.jsx";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../firebase/firebaseConfig.js";
+import { useDispatch } from "react-redux";
+import { userLoginEmail } from "../redux/actions/userActions.js";
 
 const RouterDom = () => {
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        onAuthStateChanged(auth, (user) => { 
+            console.log(user)
+            if (user.uid) {
+                dispatch(
+                    userLoginEmail({
+                        name: user.displayName,
+                        email: user.email,
+                        error: false,
+                    })
+                );
+            }
+        } )
+    }, []);
+
     return (
         <BrowserRouter>
             <Routes>
