@@ -118,6 +118,19 @@
             width: 100%;
         }
     }
+
+    input[type="file"]::-webkit-file-upload-button {
+        background-color: #FFE031;
+        color: #414141;
+        padding: 6px;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 16px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
 }
 
 input[type="number"]::-webkit-outer-spin-button,

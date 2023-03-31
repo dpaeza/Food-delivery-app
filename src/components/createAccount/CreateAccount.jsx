@@ -7,9 +7,12 @@ import UseAnimations from "react-useanimations";
 import loading from 'react-useanimations/lib/loading';
 import { yupResolver } from "@hookform/resolvers/yup";
 import *as yup from 'yup';
+import { fileUpload } from "../../services/fileUpload";
 
+//const que valida que el numero telefonico sea numero y que tenga 10 digitos
 const numberRegex = /^[0-9]{10}$/;
 
+//validaciones del formulario con yup
 const schema = yup
     .object({
         name: yup.string().required("Name is required"),
@@ -26,7 +29,7 @@ const schema = yup
         city: yup.string().required("City is required"),
         address: yup.string().required("Address is required"),
         birthday: yup.string().required("Birthday is required"),
-        picture: yup.string().required("Profile picture is required"),
+        picture: yup.mixed().required("Profile picture is required"),
     })
     .required();
 
@@ -37,11 +40,17 @@ const CreateAccount = () => {
     const {
         register,
         handleSubmit,
+        setValue,
         formState: { errors }
     } = useForm({ resolver: yupResolver(schema) });
 
-    const submitSigIn = (data) => {
+    const submitSigIn = async (data) => {
+        //obtengo la url de la foto subida por el usuario
+        const photoURL = await fileUpload(data.picture[0]);
+        //cambio el valor de picture por la URL de la foto obtenida por cloudinary
+        setValue("picture", photoURL);
         console.log(data);
+        //disparo la función asincrona para registrar
         dispatch(userRegisterAsync(data));
     };
 
@@ -149,7 +158,11 @@ const CreateAccount = () => {
                         </div>
                         <div>
                             <label>PROFILE PICTURE</label>
-                            <input type="url" {...register("picture")} />
+                            <input
+                                type="file"
+                                accept=".png,.jpg,.jpeg"
+                                {...register("picture")}
+                            />
                             {errors.picture ? (
                                 <span className="createAccount__error">
                                     {errors.picture.message}
