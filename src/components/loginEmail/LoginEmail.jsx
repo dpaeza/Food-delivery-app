@@ -44,15 +44,15 @@ const LoginEmail = () => {
                 text: "Wrong email or password",
             });
         }
-        if (!user.error && user.email !== '') {
-            console.log(user)
+        if (user.isLogged) {
+            console.log(user);
             showAlert({
                 icon: "success",
                 text: "Login successful",
             });
             navigate("/home");
         }
-    }, [user.error]);
+    }, [user.isLogged]);
 
     return (
         <section className="createAccount loginEmail">

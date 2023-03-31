@@ -1,5 +1,7 @@
-import React from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { showAlert } from "../../helpers/swithAlerts";
 import { doLogoutAsync } from "../../redux/actions/userActions";
 
 const Home = () => {
@@ -9,6 +11,13 @@ const Home = () => {
     const handleLogout = () => {
         dispatch(doLogoutAsync());
     }
+
+    const user = useSelector((state) => state.user);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        console.log(user)
+    }, []);
 
     return (
         <>

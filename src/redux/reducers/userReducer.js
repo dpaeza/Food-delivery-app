@@ -4,7 +4,7 @@ const initialState = {
     name: "",
     email: "",
     error: false,
-    isLogged: false,
+    isLogged: false
 };
 
 export const userReducer = (state = initialState, action) => {
@@ -23,7 +23,11 @@ export const userReducer = (state = initialState, action) => {
             };
         case userTypes.LOGIN_USER_EMAIL_AND_PASSWORD:
             return {
-                ...action.payload,
+                ...state,
+                name: action.payload.name,
+                email: action.payload.email,
+                error: action.payload.error,
+                isLogged: action.payload.isLogged
             };
         case userTypes.DO_LOGOUT:
             return {

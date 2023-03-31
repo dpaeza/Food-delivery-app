@@ -24,7 +24,7 @@ const RouterDom = () => {
     useEffect(() => {
         onAuthStateChanged(auth, (user) => { 
             console.log(user)
-            if (user.uid) {
+            if (user?.uid) {
                 dispatch(
                     userLoginEmail({
                         name: user.displayName,

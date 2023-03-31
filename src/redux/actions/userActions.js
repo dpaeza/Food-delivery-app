@@ -45,11 +45,11 @@ export const userRegisterAsync = ({
     };
 };
 
-const toggleLogin = () => {
-    return {
-        type: userTypes.TOGGLE_LOGIN,
-    };
-};
+// const toggleLogin = () => {
+//     return {
+//         type: userTypes.TOGGLE_LOGIN,
+//     };
+// };
 
 export const userLoginEmail = (user) => {
     return {
@@ -73,9 +73,9 @@ export const userLoginEmailAsync = ({ email, password }) => {
                     name: user.user.displayName,
                     email: user.user.email,
                     error: false,
+                    isLogged: true
                 })
             );
-            dispatch(toggleLogin());
             console.log(user);
             console.log("llegue hasta aquí");
         } catch (error) {
@@ -85,6 +85,7 @@ export const userLoginEmailAsync = ({ email, password }) => {
                     name: "",
                     email: "",
                     error: true,
+                    isLogged: false
                 })
             );
         }
@@ -101,15 +102,17 @@ export const userLoginProvider = (provider) => {
                     name: user.displayName,
                     email: user.email,
                     error: false,
+                    isLogged: true
                 })
             );
-            dispatch(toggleLogin());
+            console.log("llegue hasta aquí");
         } catch (error) {
             dispatch(
                 userLoginEmail({
                     name: "",
                     email: "",
                     error: true,
+                    isLogged: false
                 })
             );
             console.log(error);
