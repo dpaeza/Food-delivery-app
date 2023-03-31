@@ -27,6 +27,10 @@ const Login = () => {
     //Use effect para redirija al usuario a home si ya está loggueado
     useEffect(() => {
         if (user.isLogged) {
+            showAlert({
+                icon: "success",
+                text: "Login successful",
+            });
             navigate("/home");
         }
     }, [user.isLogged]);
