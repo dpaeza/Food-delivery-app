@@ -28,16 +28,19 @@ const Login = () => {
             });
             navigate("/home");
         }
-    }, [user.isLogged, user.register]);
+    }, [user.register]);
 
     //Use effect para validar si se tiene o no coleccion del usuario que se logue con el provedor google o facebook
     useEffect(() => {
-        if (!user.register) {
+        if (!user.register && user.isLogged) {
+            console.log(user.register);
+            console.log(user.isLogged);
             showAlert({
                 icon: "success",
                 text: "To continue please fill out the following form",
             });
             navigate("/create_account");
+            console.log("estoy entrado a createeee");
         }
     }, [user.register]);
 

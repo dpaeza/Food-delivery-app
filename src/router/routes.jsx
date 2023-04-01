@@ -22,21 +22,29 @@ const RouterDom = () => {
     const dispatch = useDispatch();
     const userG = useSelector((state) => state.user);
 
-    // useEffect(() => {
-    //     onAuthStateChanged(auth, (user) => {
-    //         console.log(user);
-    //         if (user?.uid) {
-    //             dispatch(
-    //                 userLoginEmail({
-    //                     name: user.displayName,
-    //                     email: user.email,
-    //                     error: false,
-    //                     isLogged: true,
-    //                 })
-    //             );
-    //         }
-    //     });
-    // }, []);
+    useEffect(() => {
+        onAuthStateChanged(auth, (user) => {
+            console.log(user);
+            if (user?.uid && userG.register) {
+                dispatch(
+                    userLoginEmail({
+                        error: false,
+                        isLogged: true,
+                        register: true,
+                    })
+                );
+            }
+            if (user?.uid && !userG.register) {
+                dispatch(
+                    userLoginEmail({
+                        error: false,
+                        isLogged: true,
+                        register: false,
+                    })
+                );
+            }
+        });
+    }, []);
 
     return (
         <BrowserRouter>
