@@ -10,6 +10,7 @@ import {
 import { toogleLoading } from "./loadingActions";
 import { addDoc, collection, getDoc, query, where } from "firebase/firestore";
 import { showAlert } from "../../helpers/swithAlerts";
+import { filterCollection } from "../../services/filterCollection";
 
 const userRegister = (obj) => {
     return {
@@ -94,30 +95,41 @@ export const userLoginEmailAsync = ({ email, password }) => {
     return async (dispatch) => {
         try {
             // signInWithEmailAndPassword metodo de Firebase que permite loguear
-            const user = await signInWithEmailAndPassword(
+            const {user} = await signInWithEmailAndPassword(
                 auth,
                 email,
                 password
             );
+            //Obtener el documento del usurio en la coleccion users con su info
+            const userCollection = await filterCollection({
+                key: 'uid',
+                value: user.uid,
+                collectionName: "users",
+            });
             // Se ejecuta la funcion sincrona pasandole name, email y error en false
             dispatch(
                 userLoginEmail({
-                    name: user.user.displayName,
-                    email: user.user.email,
+                    ...userCollection[0],
                     error: false,
                     isLogged: true
                 })
             );
             console.log(user);
-            console.log("llegue hasta aquí");
         } catch (error) {
             // Se ejecuta la funcion sincrona pasandole name, email y error en true
             dispatch(
                 userLoginEmail({
                     name: "",
                     email: "",
+                    phone: "",
+                    city: "",
+                    address: "",
+                    birthday: "",
+                    photoURL: "",
+                    userType: "",
+                    uid: "",
                     error: true,
-                    isLogged: false
+                    isLogged: false,
                 })
             );
         }

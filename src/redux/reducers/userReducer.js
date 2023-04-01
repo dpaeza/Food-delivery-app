@@ -34,8 +34,15 @@ export const userReducer = (state = initialState, action) => {
                 ...state,
                 name: action.payload.name,
                 email: action.payload.email,
+                phone: action.payload.phone,
+                city: action.payload.city,
+                address: action.payload.address,
+                birthday: action.payload.birthday,
+                photoURL: action.payload.photoURL,
+                userType: action.payload.userType,
+                uid: action.payload.uid,
                 error: action.payload.error,
-                isLogged: action.payload.isLogged
+                isLogged: action.payload.isLogged,
             };
         case userTypes.DO_LOGOUT:
             return {
