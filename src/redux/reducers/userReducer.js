@@ -3,8 +3,15 @@ import { userTypes } from "../types/userTypes";
 const initialState = {
     name: "",
     email: "",
+    phone: "",
+    city: "",
+    address: "",
+    birthday: "",
+    photoURL: "",
+    userType: "",
+    uid: "",
     error: false,
-    isLogged: false
+    isLogged: false,
 };
 
 export const userReducer = (state = initialState, action) => {
@@ -12,9 +19,10 @@ export const userReducer = (state = initialState, action) => {
         case userTypes.CREATE_USER:
             return {
                 ...state,
-                name: action.payload.name,
-                email: action.payload.email,
-                error: action.payload.error,
+                ...action.payload,
+                // name: action.payload.name,
+                // email: action.payload.email,
+                // error: action.payload.error,
             };
         case userTypes.TOGGLE_LOGIN:
             return {

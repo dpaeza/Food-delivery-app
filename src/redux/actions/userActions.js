@@ -1,5 +1,5 @@
 import { userTypes } from "../types/userTypes";
-import { auth } from "../../firebase/firebaseConfig";
+import { auth, dataBase } from "../../firebase/firebaseConfig";
 import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
@@ -8,15 +8,13 @@ import {
     updateProfile,
 } from "firebase/auth";
 import { toogleLoading } from "./loadingActions";
+import { addDoc, collection, getDoc, query, where } from "firebase/firestore";
+import { showAlert } from "../../helpers/swithAlerts";
 
-const userRegister = ({ nombre, email, error }) => {
+const userRegister = (obj) => {
     return {
         type: userTypes.CREATE_USER,
-        payload: {
-            nombre,
-            email,
-            error,
-        },
+        payload: obj
     };
 };
 
@@ -26,21 +24,55 @@ export const userRegisterAsync = ({
     password,
     prefi,
     phone,
+    city,
+    address,
+    birthday,
     picture,
 }) => {
     return async (dispatch) => {
         try {
             dispatch(toogleLoading());
-            await createUserWithEmailAndPassword(auth, email, password);
+            //Crear usuario en firebase
+            const { user } = await createUserWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
+            //actualizar datos del usuario creado en firebase
             updateProfile(auth.currentUser, {
                 displayName: name,
                 phoneNumber: prefi + phone,
                 photoURL: picture,
             });
-            dispatch(userRegister({ name, email, error: false }));
+            //crear el objeto newUser para subirlo a la coleccion de usuarios
+            const newUser = {
+                name: name,
+                email: user.email,
+                phone: prefi + phone,
+                city: city,
+                address: address,
+                birthday: birthday,
+                photoURL: picture,
+                userType: "client",
+                uid: user.uid,
+            };
+            //Agregar usario(newUser) a la coleccion users
+            const userDoc = await addDoc(
+                collection(dataBase, "users"),
+                newUser
+            );
+            console.log(userDoc)
+            //Ejecutar la funcion sincrona
             dispatch(toogleLoading());
+            dispatch(userRegister({ ...newUser, error: false }));
+            
         } catch (error) {
             dispatch(userRegister({ name, email, error: true }));
+            showAlert({
+                icon: "error",
+                text: "There was an error processing the request, verify that you do not have an account registered with this email or try again",
+            });
+            dispatch(toogleLoading());
         }
     };
 };
