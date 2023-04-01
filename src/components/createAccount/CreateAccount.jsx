@@ -1,13 +1,15 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import { userRegisterAsync } from "../../redux/actions/userActions";
+import { userLoginEmail, userRegisterAsync } from "../../redux/actions/userActions";
 import UseAnimations from "react-useanimations";
 import loading from 'react-useanimations/lib/loading';
 import { yupResolver } from "@hookform/resolvers/yup";
 import *as yup from 'yup';
 import { fileUpload } from "../../services/fileUpload";
+import { addDocument } from "../../services/filterCollection";
+import { showAlert } from "../../helpers/swithAlerts";
 
 //const que valida que el numero telefonico sea numero y que tenga 10 digitos
 const numberRegex = /^[0-9]{10}$/;
@@ -36,6 +38,8 @@ const schema = yup
 const CreateAccount = () => {
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const user = useSelector((state) => state.user);
     const loadingCreate = useSelector((state)=>state.loadingCreateAccount)
     const {
         register,
@@ -50,8 +54,42 @@ const CreateAccount = () => {
         //cambio el valor de picture por la URL de la foto obtenida por cloudinary
         setValue("picture", photoURL);
         console.log(data);
-        //disparo la función asincrona para registrar
-        dispatch(userRegisterAsync(data));
+        
+        if (user.register) {
+            //disparo la función asincrona para registrar
+            dispatch(userRegisterAsync(data));
+        } else {
+            const newUser = {
+                ...data,
+                phone: data.prefi + data.phone,
+                userType: "client",
+                uid: user.uid,
+            };
+            addDocument("users", newUser)
+                .then(() => {
+                    console.log("Documento agregado con éxito");
+                    dispatch(
+                        userLoginEmail({
+                            ...newUser,
+                            error: false,
+                            isLogged: true,
+                            register: true,
+                        })
+                    );
+                    showAlert({
+                        icon: "success",
+                        text: "Welcome",
+                    });
+                    navigate('/home')
+                })
+                .catch((error) => {
+                    showAlert({
+                        icon: "error",
+                        text: "Ops, there was an error processing your request try agaian",
+                    });
+                });
+        }
+        
     };
 
     return (

@@ -15,7 +15,7 @@ import { filterCollection } from "../../services/filterCollection";
 const userRegister = (obj) => {
     return {
         type: userTypes.CREATE_USER,
-        payload: obj
+        payload: obj,
     };
 };
 
@@ -62,11 +62,9 @@ export const userRegisterAsync = ({
                 collection(dataBase, "users"),
                 newUser
             );
-            console.log(userDoc)
             //Ejecutar la funcion sincrona
             dispatch(toogleLoading());
             dispatch(userRegister({ ...newUser, error: false }));
-            
         } catch (error) {
             dispatch(userRegister({ name, email, error: true }));
             showAlert({
@@ -95,14 +93,14 @@ export const userLoginEmailAsync = ({ email, password }) => {
     return async (dispatch) => {
         try {
             // signInWithEmailAndPassword metodo de Firebase que permite loguear
-            const {user} = await signInWithEmailAndPassword(
+            const { user } = await signInWithEmailAndPassword(
                 auth,
                 email,
                 password
             );
-            //Obtener el documento del usurio en la coleccion users con su info
+            // Obtener el documento del usurio en la coleccion users con su info
             const userCollection = await filterCollection({
-                key: 'uid',
+                key: "uid",
                 value: user.uid,
                 collectionName: "users",
             });
@@ -111,10 +109,9 @@ export const userLoginEmailAsync = ({ email, password }) => {
                 userLoginEmail({
                     ...userCollection[0],
                     error: false,
-                    isLogged: true
+                    isLogged: true,
                 })
             );
-            console.log(user);
         } catch (error) {
             // Se ejecuta la funcion sincrona pasandole name, email y error en true
             dispatch(
@@ -132,6 +129,10 @@ export const userLoginEmailAsync = ({ email, password }) => {
                     isLogged: false,
                 })
             );
+            showAlert({
+                icon: "error",
+                text: "Ops, there was an error processing your request try agaian",
+            });
         }
     };
 };
@@ -140,35 +141,53 @@ export const userLoginProvider = (provider) => {
     return async (dispatch) => {
         try {
             const { user } = await signInWithPopup(auth, provider);
-            console.log(user)
-            dispatch(
-                userLoginEmail({
-                    name: user.displayName,
-                    email: user.email,
-                    error: false,
-                    isLogged: true
-                })
-            );
-            console.log("llegue hasta aquí");
+            console.log(user);
+            const userCollection = await filterCollection({
+                key: "uid",
+                value: user.uid,
+                collectionName: "users",
+            });
+            if (userCollection.length == 0) {
+                dispatch(
+                    userLoginEmail({
+                        uid: user.uid,
+                        error: false,
+                        isLogged: true,
+                        register: false,
+                    })
+                );
+            } else {
+                dispatch(
+                    userLoginEmail({
+                        ...userCollection[0],
+                        error: false,
+                        isLogged: true,
+                        register: true,
+                    })
+                );
+            }
         } catch (error) {
             dispatch(
                 userLoginEmail({
                     name: "",
                     email: "",
                     error: true,
-                    isLogged: false
+                    isLogged: false,
                 })
             );
-            console.log(error);
+            showAlert({
+                icon: "error",
+                text: "Ops, there was an error processing your request try agaian",
+            });
         }
     };
 };
 
 const doLogout = () => {
     return {
-        type: userTypes.DO_LOGOUT
-    }
-}
+        type: userTypes.DO_LOGOUT,
+    };
+};
 
 export const doLogoutAsync = () => {
     return async (dispatch) => {
@@ -177,6 +196,10 @@ export const doLogoutAsync = () => {
             dispatch(doLogout());
         } catch (error) {
             dispatch(doLogout());
+            showAlert({
+                icon: "error",
+                text: "Ops, there was an error processing your request try agaian",
+            });
         }
-    }
+    };
 };

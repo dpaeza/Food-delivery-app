@@ -12,6 +12,7 @@ const initialState = {
     uid: "",
     error: false,
     isLogged: false,
+    register: true,
 };
 
 export const userReducer = (state = initialState, action) => {
@@ -43,6 +44,7 @@ export const userReducer = (state = initialState, action) => {
                 uid: action.payload.uid,
                 error: action.payload.error,
                 isLogged: action.payload.isLogged,
+                register: action.payload.register,
             };
         case userTypes.DO_LOGOUT:
             return {

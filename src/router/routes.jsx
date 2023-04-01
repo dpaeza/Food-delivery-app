@@ -14,28 +14,29 @@ import Profile from "../components/profile/Profile.jsx";
 import LoginEmail from "../components/loginEmail/LoginEmail.jsx";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../firebase/firebaseConfig.js";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { userLoginEmail } from "../redux/actions/userActions.js";
 import PrivateRoutes from "./PrivateRoutes.jsx";
 
 const RouterDom = () => {
     const dispatch = useDispatch();
+    const userG = useSelector((state) => state.user);
 
-    useEffect(() => {
-        onAuthStateChanged(auth, (user) => {
-            console.log(user);
-            if (user?.uid) {
-                dispatch(
-                    userLoginEmail({
-                        name: user.displayName,
-                        email: user.email,
-                        error: false,
-                        isLogged: true,
-                    })
-                );
-            }
-        });
-    }, []);
+    // useEffect(() => {
+    //     onAuthStateChanged(auth, (user) => {
+    //         console.log(user);
+    //         if (user?.uid) {
+    //             dispatch(
+    //                 userLoginEmail({
+    //                     name: user.displayName,
+    //                     email: user.email,
+    //                     error: false,
+    //                     isLogged: true,
+    //                 })
+    //             );
+    //         }
+    //     });
+    // }, []);
 
     return (
         <BrowserRouter>

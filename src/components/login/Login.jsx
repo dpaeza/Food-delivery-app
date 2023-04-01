@@ -19,22 +19,27 @@ const Login = () => {
         dispatch(userLoginProvider(provider));
     };
 
-    //Borrar despues
+    //Use effect para redirija al usuario a home si ya está loggueado y tiene documento en la colección users
     useEffect(() => {
-        console.log(user)
-    }, [user]);
-
-    //Use effect para redirija al usuario a home si ya está loggueado
-    useEffect(() => {
-        if (user.isLogged) {
+        if (user.isLogged && user.register) {
             showAlert({
                 icon: "success",
                 text: "Login successful",
             });
             navigate("/home");
         }
-    }, [user.isLogged]);
+    }, [user.isLogged, user.register]);
 
+    //Use effect para validar si se tiene o no coleccion del usuario que se logue con el provedor google o facebook
+    useEffect(() => {
+        if (!user.register) {
+            showAlert({
+                icon: "success",
+                text: "To continue please fill out the following form",
+            });
+            navigate("/create_account");
+        }
+    }, [user.register]);
 
     return (
         <section className="login">

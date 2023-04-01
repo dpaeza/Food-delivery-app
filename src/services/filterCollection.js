@@ -1,4 +1,4 @@
-import { collection, getDoc, getDocs, query, where } from "firebase/firestore";
+import { addDoc, collection, getDoc, getDocs, query, where } from "firebase/firestore";
 import { dataBase } from "../firebase/firebaseConfig";
 
 const initialData = {
@@ -7,6 +7,7 @@ const initialData = {
     collectionName: ''
 }
 
+//Funcion para obtener un docuemnto de una colección
 export const filterCollection = async (data = initialData) => {
     console.log(data);
     const collectionName = data.collectionName;
@@ -28,3 +29,14 @@ export const filterCollection = async (data = initialData) => {
         return []
     }
 }
+
+//Funcion para agregar un documento a una colección
+export const addDocument = async (collectionName, obj) => {
+    try {
+        await addDoc(collection(dataBase, collectionName), obj);
+        return true
+    } catch (error) {
+        return false
+    }
+}
+
