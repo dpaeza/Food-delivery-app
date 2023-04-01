@@ -22,13 +22,15 @@ const Login = () => {
     //Use effect para redirija al usuario a home si ya está loggueado y tiene documento en la colección users
     useEffect(() => {
         if (user.isLogged && user.register) {
+            console.log(user.register);
+            console.log(user.isLogged);
             showAlert({
                 icon: "success",
                 text: "Login successful",
             });
             navigate("/home");
         }
-    }, [user.register]);
+    }, [user.isLogged]);
 
     //Use effect para validar si se tiene o no coleccion del usuario que se logue con el provedor google o facebook
     useEffect(() => {
