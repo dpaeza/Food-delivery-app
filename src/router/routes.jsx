@@ -17,32 +17,67 @@ import { auth } from "../firebase/firebaseConfig.js";
 import { useDispatch, useSelector } from "react-redux";
 import { userLoginEmail } from "../redux/actions/userActions.js";
 import PrivateRoutes from "./PrivateRoutes.jsx";
+import { filterCollection } from "../services/filterCollection.js";
 
 const RouterDom = () => {
     const dispatch = useDispatch();
     const userG = useSelector((state) => state.user);
 
     useEffect(() => {
-        onAuthStateChanged(auth, (user) => {
+        onAuthStateChanged(auth, async (user) => {
             console.log(user);
-            if (user?.uid && userG.register && userG.address != '') {
-                dispatch(
-                    userLoginEmail({
-                        error: false,
-                        isLogged: true,
-                        register: true,
-                    })
-                );
+            if (user?.uid) {
+                const userCollection = await filterCollection({
+                    key: "uid",
+                    value: user.uid,
+                    collectionName: "users",
+                });
+                if (userCollection.length == 0) {
+                    dispatch(
+                        userLoginEmail({
+                            name: "",
+                            email: "",
+                            phone: "",
+                            city: "",
+                            address: "",
+                            birthday: "",
+                            photoURL: "",
+                            userType: "",
+                            uid: user.uid,
+                            error: false,
+                            isLogged: true,
+                            register: false,
+                        })
+                    );
+                } else {
+                    dispatch(
+                        userLoginEmail({
+                            ...userCollection[0],
+                            error: false,
+                            isLogged: true,
+                            register: true,
+                        })
+                    );
+                }
             }
-            if (user?.uid && !userG.register) {
-                dispatch(
-                    userLoginEmail({
-                        error: false,
-                        isLogged: true,
-                        register: false,
-                    })
-                );
-            }
+            // if (user?.uid && userG.register && userG.address != '') {
+            //     dispatch(
+            //         userLoginEmail({
+            //             error: false,
+            //             isLogged: true,
+            //             register: true,
+            //         })
+            //     );
+            // }
+            // if (user?.uid && !userG.register) {
+            //     dispatch(
+            //         userLoginEmail({
+            //             error: false,
+            //             isLogged: true,
+            //             register: false,
+            //         })
+            //     );
+            // }
         });
     }, []);
 
