@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { showAlert } from "../../helpers/swithAlerts";
 import { doLogoutAsync } from "../../redux/actions/userActions";
+import Footer from "../Footer/Footer";
 
 const Home = () => {
 
@@ -23,6 +24,7 @@ const Home = () => {
         <>
             <h1>HOME</h1>
             <button onClick={handleLogout}>Logout</button>
+            <Footer />
         </>
     );
 }
