@@ -156,7 +156,6 @@ export const userLoginProvider = (provider) => {
     return async (dispatch) => {
         try {
             const { user } = await signInWithPopup(auth, provider);
-            console.log(user);
             const userCollection = await filterCollection({
                 key: "uid",
                 value: user.uid,
@@ -218,3 +217,54 @@ export const doLogoutAsync = () => {
         }
     };
 };
+
+export const validateCodeAsync = (code) => {
+    return async (dispatch) => {
+        const confirmationResult = window.confirmationResult;
+        confirmationResult
+            .confirm(code)
+            .then( async (result) => {
+                const user = result.user;
+                console.log(user)
+                const userCollection = await filterCollection({
+                    key: "uid",
+                    value: user.uid,
+                    collectionName: "users",
+                });
+                if (userCollection.length == 0) {
+                    dispatch(
+                        userLoginEmail({
+                            uid: user.uid,
+                            error: false,
+                            isLogged: true,
+                            register: false,
+                        })
+                    );
+                } else {
+                    dispatch(
+                        userLoginEmail({
+                            ...userCollection[0],
+                            error: false,
+                            isLogged: true,
+                            register: true,
+                        })
+                    );
+                }
+            })
+            .catch((error) => {
+                console.log(error)
+                dispatch(
+                    userLoginEmail({
+                        name: "",
+                        email: "",
+                        error: true,
+                        isLogged: false,
+                    })
+                );
+                showAlert({
+                    icon: "error",
+                    text: "Ops, there was an error processing your request try agaian",
+                });
+            });
+    }
+}

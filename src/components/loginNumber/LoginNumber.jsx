@@ -8,16 +8,16 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
 import { auth } from "../../firebase/firebaseConfig";
+import { showAlert } from "../../helpers/swithAlerts";
 
 //const que valida que el numero telefonico sea numero y que tenga 10 digitos
-const numberRegex = /^[0-9]{10}$/;
+// const numberRegex = /^[0-9]{10}$/;
 
 const schema = yup
     .object({
         phone: yup
             .string()
             .required("Phone number is required")
-            .matches(numberRegex, "The phone number must be 10 digits"),
     })
     .required();
 
@@ -25,15 +25,17 @@ const LoginNumber = () => {
 
     const navigate = useNavigate();
     const user = useSelector((state) => state.user);
-        const {
+    const {
             register,
             handleSubmit,
-            setValue,
             formState: { errors },
     } = useForm({ resolver: yupResolver(schema) });
     
     const submitNumber = (data) => { 
-        console.log(data)
+        console.log(data);
+        generateRecaptcha();
+        const appVerifier = window.recaptchaVerifier;
+        sendSMS(data.phone, appVerifier);
     }
 
     //Use effect para redirija al usuario a home si ya está loggueado
@@ -59,9 +61,24 @@ const LoginNumber = () => {
         
     };
 
-    const sendSMS = (phoneNumber) => {
-        signInWithPhoneNumber()
-    }
+    const sendSMS = (phoneNumber, recaptchaVerifier) => {
+        signInWithPhoneNumber(auth, '+'+phoneNumber, recaptchaVerifier)
+            .then((response) => {
+                window.confirmationResult = response;
+                showAlert({
+                    icon: "success",
+                    text: `Excellent! In a few moments you will receive a verification code to the number: +${phoneNumber}`,
+                })
+                navigate("/verification");
+            })
+            .catch((error) => {
+                console.log(error.message);
+                showAlert({
+                    icon: "error",
+                    text: `Ops...! The following error occurred while processing the request: ${error.message}`,
+                });
+            });
+    };
 
     return (
         <section className="login">
