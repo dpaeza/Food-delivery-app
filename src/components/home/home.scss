@@ -1,0 +1,22 @@
+.home{
+
+    &__locationContainer{
+        display: flex;
+        padding: 16px;
+        gap: 6px;
+        align-items: center;
+
+        &__tittle{
+            font-weight: 400;
+            font-size: 10px;
+            line-height: 12px;
+            color: #FFE031;
+        }
+
+        &__direction{
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 16px;
+        }
+    }
+}
