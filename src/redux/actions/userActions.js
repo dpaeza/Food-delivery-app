@@ -252,7 +252,6 @@ export const validateCodeAsync = (code) => {
                 }
             })
             .catch((error) => {
-                console.log(error)
                 dispatch(
                     userLoginEmail({
                         name: "",

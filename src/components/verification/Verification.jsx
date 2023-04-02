@@ -8,7 +8,7 @@ import { useForm } from "react-hook-form";
 import { validateCodeAsync } from "../../redux/actions/userActions";
 import { showAlert } from "../../helpers/swithAlerts";
 
-//const que valida que el numero telefonico sea numero y que tenga 10 digitos
+//const que valida que cada casilla sea un numero y tenga un digito
 const numberRegex = /^[0-9]{1}$/;
 
 const schema = yup
@@ -57,13 +57,6 @@ const Verification = () => {
         console.log(code);
         dispatch(validateCodeAsync(code));
     };
-
-    //Use effect para redirija al usuario a home si ya está loggueado
-    // useEffect(() => {
-    //     if (user.isLogged) {
-    //         navigate("/home");
-    //     }
-    // }, [user.isLogged]);
 
     //Use effect para redirija al usuario a home si ya está loggueado y tiene documento en la colección users
     useEffect(() => {
