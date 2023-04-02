@@ -10,6 +10,7 @@ import *as yup from 'yup';
 import { fileUpload } from "../../services/fileUpload";
 import { addDocument } from "../../services/filterCollection";
 import { showAlert } from "../../helpers/swithAlerts";
+import { useEffect } from "react";
 
 //const que valida que el numero telefonico sea numero y que tenga 10 digitos
 const numberRegex = /^[0-9]{10}$/;
@@ -36,29 +37,27 @@ const schema = yup
     .required();
 
 const CreateAccount = () => {
-
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const user = useSelector((state) => state.user);
-    const loadingCreate = useSelector((state)=>state.loadingCreateAccount)
+    const loadingCreate = useSelector((state) => state.loadingCreateAccount);
     const {
         register,
         handleSubmit,
         setValue,
-        formState: { errors }
+        formState: { errors },
     } = useForm({ resolver: yupResolver(schema) });
 
     const submitSigIn = async (data) => {
         //obtengo la url de la foto subida por el usuario
         const photoURL = await fileUpload(data.picture[0]);
         //cambio el valor de picture por la URL de la foto obtenida por cloudinary
-        console.log(user)
+        console.log(user);
         setValue("picture", photoURL);
         console.log(data);
-        
+
         if (!user.isLogged) {
             //disparo la función asincrona para registrar
-            console.log(user.register);
             dispatch(userRegisterAsync(data));
         } else {
             const newUser = {
@@ -91,8 +90,20 @@ const CreateAccount = () => {
                     });
                 });
         }
-        
     };
+
+    //Use effect para redirija al usuario a home si ya está loggueado y tiene documento en la colección users
+    useEffect(() => {
+        if (user.isLogged && user.register) {
+            console.log(user.register);
+            console.log(user.isLogged);
+            showAlert({
+                icon: "success",
+                text: "Login successful",
+            });
+            navigate("/home");
+        }
+    }, [user.isLogged]);
 
     return (
         <section className="createAccount">
