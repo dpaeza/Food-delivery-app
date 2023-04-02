@@ -100,9 +100,30 @@ const RouterDom = () => {
                         </PrivateRoutes>
                     }
                 />
-                <Route path="/search" element={<Search />} />
-                <Route path="/orders" element={<Orders />} />
-                <Route path="/profile" element={<Profile />} />
+                <Route
+                    path="/search"
+                    element={
+                        <PrivateRoutes>
+                            <Search />
+                        </PrivateRoutes>
+                    }
+                />
+                <Route
+                    path="/orders"
+                    element={
+                        <PrivateRoutes>
+                            <Orders />
+                        </PrivateRoutes>
+                    }
+                />
+                <Route
+                    path="/profile"
+                    element={
+                        <PrivateRoutes>
+                            <Profile />
+                        </PrivateRoutes>
+                    }
+                />
             </Routes>
         </BrowserRouter>
     );

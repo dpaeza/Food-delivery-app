@@ -1,10 +1,20 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { doLogoutAsync } from "../../redux/actions/userActions";
 
 const Profile = () => {
 
-    return (
-        <></>
-    )
-}
+    const dispatch = useDispatch();
 
-export default Profile
+    const handleLogout = () => {
+        dispatch(doLogoutAsync());
+    };
+
+    return (
+        <section>
+            <button onClick={handleLogout}>Logout</button>
+        </section>
+    );
+};
+
+export default Profile;

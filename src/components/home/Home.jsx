@@ -7,11 +7,7 @@ import Footer from "../Footer/Footer";
 
 const Home = () => {
 
-    const dispatch = useDispatch();
-
-    const handleLogout = () => {
-        dispatch(doLogoutAsync());
-    }
+    // const dispatch = useDispatch();
 
     const user = useSelector((state) => state.user);
     const navigate = useNavigate();
@@ -21,11 +17,11 @@ const Home = () => {
     }, []);
 
     return (
-        <>
+        <section>
             <h1>HOME</h1>
-            <button onClick={handleLogout}>Logout</button>
+            
             <Footer />
-        </>
+        </section>
     );
 }
 
