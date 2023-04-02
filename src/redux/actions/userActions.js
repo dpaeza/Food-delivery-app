@@ -64,9 +64,24 @@ export const userRegisterAsync = ({
             );
             //Ejecutar la funcion sincrona
             dispatch(toogleLoading());
-            dispatch(userRegister({ ...newUser, error: false }));
+            dispatch(
+                userRegister({
+                    ...newUser,
+                    error: false,
+                    isLogged: true,
+                    register: true,
+                })
+            );
         } catch (error) {
-            dispatch(userRegister({ name, email, error: true }));
+            dispatch(
+                userRegister({
+                    name,
+                    email,
+                    error: true,
+                    isLogged: false,
+                    register: false,
+                })
+            );
             showAlert({
                 icon: "error",
                 text: "There was an error processing the request, verify that you do not have an account registered with this email or try again",

@@ -52,11 +52,13 @@ const CreateAccount = () => {
         //obtengo la url de la foto subida por el usuario
         const photoURL = await fileUpload(data.picture[0]);
         //cambio el valor de picture por la URL de la foto obtenida por cloudinary
+        console.log(user)
         setValue("picture", photoURL);
         console.log(data);
         
-        if (user.register) {
+        if (!user.isLogged) {
             //disparo la función asincrona para registrar
+            console.log(user.register);
             dispatch(userRegisterAsync(data));
         } else {
             const newUser = {
@@ -80,7 +82,7 @@ const CreateAccount = () => {
                         icon: "success",
                         text: "Welcome",
                     });
-                    navigate('/home')
+                    navigate("/home");
                 })
                 .catch((error) => {
                     showAlert({
