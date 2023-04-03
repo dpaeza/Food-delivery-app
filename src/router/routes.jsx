@@ -127,6 +127,7 @@ const RouterDom = () => {
                         </PrivateRoutes>
                     }
                 />
+                <Route path="/pizza/:idPizza" element={<CarShoppingPage />} />
             </Routes>
         </BrowserRouter>
     );
