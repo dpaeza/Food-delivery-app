@@ -32,7 +32,9 @@ const RouterDom = () => {
                     value: user.uid,
                     collectionName: "users",
                 });
+                console.log(userCollection);
                 if (userCollection.length == 0) {
+                    console.log('entre al borrado');
                     dispatch(
                         userLoginEmail({
                             name: "",
@@ -50,6 +52,7 @@ const RouterDom = () => {
                         })
                     );
                 } else {
+                    console.log("entre al no borrado");
                     dispatch(
                         userLoginEmail({
                             ...userCollection[0],

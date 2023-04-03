@@ -9,14 +9,12 @@ const initialData = {
 
 //Funcion para obtener un docuemnto de una colección
 export const filterCollection = async (data = initialData) => {
-    console.log(data);
     const collectionName = data.collectionName;
     const collections = collection(dataBase, collectionName);
     const dataArray = [];
     try {
         const q = data.key ? query(collections, where(data.key, '==', data.value)) : collections;
         const refDocs = await getDocs(q);
-        console.log(refDocs);
         refDocs.forEach( doc => {
             dataArray.push({
                 id: doc.id,

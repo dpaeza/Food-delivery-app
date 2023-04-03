@@ -10,3 +10,7 @@ export const userTypes = {
 export const loadingTypes = {
     TOGGLE_LOADING: "TOGGLE_LOADING",
 };
+
+export const restaurantTypes = {
+    GET_RESTAURANTS: "GET_RESTAURANTS",
+};

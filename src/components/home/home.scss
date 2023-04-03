@@ -1,4 +1,5 @@
 .home {
+    height: 100vh;
     &__locationContainer {
         display: flex;
         padding: 16px;
@@ -103,10 +104,16 @@
     &__restaurants{
         margin-top: 35px;
         padding: 0px 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 11px;
+        height: calc(100% - 330px);
+        overflow-y: scroll;
         &__restaurant{
             display: flex;
             gap: 10px;
             width: 100%;
+            text-decoration: none;
 
             &__imgRestaurant{
                 width: 137px;
@@ -137,19 +144,27 @@
                 color: #414141;
             }
 
-            &__before{
-                font-weight: 300;
-                font-size: 10px;
-                line-height: 12px;
-                letter-spacing: -0.3px;
-                color: #A7A7A7;
-
-                span{
-                    color: #414141;
-                }
-            }
-
 
         }
+
+        &__notFound{
+            display: flex;
+            flex-direction: column;
+            align-self: center;
+            gap: 64px;
+
+            p{
+                text-align: center;
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 16px;
+                text-align: center;
+                letter-spacing: -0.3px;
+                color: #414141;
+            }
+        }
+    }
+    &__restaurants::-webkit-scrollbar {
+        display: none;
     }
 }

@@ -1,11 +1,10 @@
 .footer{
     display: flex;
     padding: 9px 34px;
-    gap: 68px;
+    gap: 50px;
     height: 37px;
+    margin-top: 30px;
     justify-content: space-between;
-    position: relative;
-    align-items: end;
     align-items: center;
 
     &__div{
