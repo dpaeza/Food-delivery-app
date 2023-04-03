@@ -1,22 +1,155 @@
-.home{
-
-    &__locationContainer{
+.home {
+    &__locationContainer {
         display: flex;
         padding: 16px;
         gap: 6px;
         align-items: center;
 
-        &__tittle{
+        &__tittle {
             font-weight: 400;
             font-size: 10px;
             line-height: 12px;
-            color: #FFE031;
+            color: #ffe031;
         }
 
-        &__direction{
+        &__direction {
             font-weight: 400;
             font-size: 14px;
             line-height: 16px;
+        }
+    }
+    .carouselIMG{
+        .swiper {
+            width: 100%;
+            height: 135px;
+            margin-left: 16px;
+        }
+
+        .swiper-slide {
+            text-align: center;
+            font-size: 18px;
+            background: #fff;
+
+            /* Center slide text vertically */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .swiper-slide img {
+            display: block;
+            width: 260px;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .swiper-slide,
+        swiper-slide {
+            flex-shrink: unset !important;
+        }
+    }
+    
+    h1{
+        font-weight: 300;
+        font-size: 14px;
+        line-height: 16px;
+        color: #414141;
+        margin: 16px;
+    }
+
+    .carouselButtons{
+        .swiper {
+            width: 100%;
+            height: 32px;
+            margin-left: 16px;
+        }
+
+        .swiper-slide {
+            text-align: center;
+            font-size: 18px;
+            background: #fff;
+
+            /* Center slide text vertically */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .swiper-slide div {
+            display: flex;
+            border-radius: 5px;
+            align-items: center;
+            justify-content: center;
+            gap: 18px;
+            background: #F2F2F2;
+            font-weight: 400;
+            font-size: 10px;
+            line-height: 12px;
+            color: #6C6C6C;
+            width: 105px;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .swiper-slide,
+        swiper-slide {
+            flex-shrink: unset !important;
+        }
+    }
+
+    &__restaurants{
+        margin-top: 35px;
+        padding: 0px 16px;
+        &__restaurant{
+            display: flex;
+            gap: 10px;
+            width: 100%;
+
+            &__imgRestaurant{
+                width: 137px;
+                height: 106px;
+                border-radius: 10px;
+                border-bottom-right-radius: 60%;
+            }
+
+            &__name{
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 16px;
+                letter-spacing: -0.3px;
+                color: #414141;
+            }
+
+            &__stars{
+                display: flex;
+                gap: 2px;
+                margin: 2px 0px 10px 0px;
+            }
+
+            &__timetable{
+                font-weight: 300;
+                font-size: 14px;
+                line-height: 16px;
+                letter-spacing: -0.3px;
+                color: #414141;
+            }
+
+            &__before{
+                font-weight: 300;
+                font-size: 10px;
+                line-height: 12px;
+                letter-spacing: -0.3px;
+                color: #A7A7A7;
+
+                span{
+                    color: #414141;
+                }
+            }
+
+
         }
     }
 }
