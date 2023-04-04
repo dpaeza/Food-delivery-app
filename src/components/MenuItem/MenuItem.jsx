@@ -91,6 +91,9 @@ const MenuItem = () => {
             restaurant_name: restaurant.name,
             restaurant_logo: restaurant.logo,
             delivery: restaurant?.delivery,
+            status: '',
+            payment: '',
+            Note: '',
         };
 
         dispatch(addItemCart(addNewItemCart))

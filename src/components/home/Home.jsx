@@ -22,13 +22,13 @@ import "swiper/css/pagination";
 import { Pagination } from "swiper";
 import { getRestaurantsAsync } from "../../redux/actions/restaurantsActions";
 
-
 const Home = () => {
-
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const user = useSelector((state) => state.user);
     const res = useSelector((state) => state.restaurants);
+    const cart = useSelector((state) => state.cart);
+    const [totalCart, setTotalCart] = useState(0);
     const images = [
         promo1,
         promo2,
@@ -39,7 +39,7 @@ const Home = () => {
         promo7,
         promo8,
         promo9,
-        promo10
+        promo10,
     ];
     const buttons = [
         { text: "All" },
@@ -65,7 +65,7 @@ const Home = () => {
         { img: "🍸", text: "Alcohol" },
         { img: "🍰", text: "Desserts" },
     ];
-    const [selectedFilter, setSelectedFilter] = useState('All')
+    const [selectedFilter, setSelectedFilter] = useState("All");
     useEffect(() => {
         dispatch(getRestaurantsAsync());
     }, []);
@@ -74,6 +74,15 @@ const Home = () => {
         console.log(user);
         console.log(res.restaurants);
     }, [res]);
+
+    useEffect(() => {
+        console.log(cart.cart)
+        const totalPrice = cart.cart.reduce(
+            (acc, item) => acc + item.item_price,
+            0
+        );
+        setTotalCart(totalPrice)
+    }, [cart]);
 
     return (
         <section className="home">
@@ -202,9 +211,21 @@ const Home = () => {
                     </div>
                 )}
             </main>
+            {cart.cart.length !== 0 ? (
+                <div className="home__cart">
+                    <Link className="home__cart__link">
+                        <div>{cart.cart.length}</div>
+                        <p>View cart</p>
+                        <p>{totalCart.toFixed(1)}$</p>
+                    </Link>
+                </div>
+            ) : (
+                <></>
+            )}
+
             <Footer />
         </section>
     );
-}
+};
 
-export default Home
+export default Home;
