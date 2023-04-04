@@ -148,6 +148,7 @@ const Home = () => {
                         <Link
                             key={index}
                             className="home__restaurants__restaurant"
+                            to={`/restaurant/${restaurant.id}`}
                         >
                             <figure>
                                 <img

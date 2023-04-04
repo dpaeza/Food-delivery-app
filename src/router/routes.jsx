@@ -18,6 +18,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { userLoginEmail } from "../redux/actions/userActions.js";
 import PrivateRoutes from "./PrivateRoutes.jsx";
 import { filterCollection } from "../services/filterCollection.js";
+import Restaurant from "../components/Restaurant/Restaurant.jsx";
 
 const RouterDom = () => {
     const dispatch = useDispatch();
@@ -127,7 +128,14 @@ const RouterDom = () => {
                         </PrivateRoutes>
                     }
                 />
-                <Route path="/pizza/:idPizza" element={<CarShoppingPage />} />
+                <Route
+                    path="/restaurant/:idRestaurant"
+                    element={
+                        <PrivateRoutes>
+                            <Restaurant />
+                        </PrivateRoutes>
+                    }
+                />
             </Routes>
         </BrowserRouter>
     );

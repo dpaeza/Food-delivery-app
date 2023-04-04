@@ -12,6 +12,6 @@ export const restaurantsReducer = (state = initialValue, action) => {
                 restaurants: action.payload,
             };
         default:
-            return initialValue;
+            return state;
     }
 };

@@ -14,3 +14,7 @@ export const loadingTypes = {
 export const restaurantTypes = {
     GET_RESTAURANTS: "GET_RESTAURANTS",
 };
+
+export const menuTypes = {
+    GET_MENU: "GET_MENU",
+};
