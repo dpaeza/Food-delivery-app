@@ -19,6 +19,7 @@ import { userLoginEmail } from "../redux/actions/userActions.js";
 import PrivateRoutes from "./PrivateRoutes.jsx";
 import { filterCollection } from "../services/filterCollection.js";
 import Restaurant from "../components/Restaurant/Restaurant.jsx";
+import MenuItem from "../components/MenuItem/MenuItem.jsx";
 
 const RouterDom = () => {
     const dispatch = useDispatch();
@@ -133,6 +134,14 @@ const RouterDom = () => {
                     element={
                         <PrivateRoutes>
                             <Restaurant />
+                        </PrivateRoutes>
+                    }
+                />
+                <Route
+                    path="/item/:idItem"
+                    element={
+                        <PrivateRoutes>
+                            <MenuItem />
                         </PrivateRoutes>
                     }
                 />
