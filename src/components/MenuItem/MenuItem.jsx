@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Notify } from "../../helpers/swithAlerts"
 import backArrow from "../../assets/back_arrow.svg";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
@@ -11,7 +12,6 @@ import { addItemCart } from "../../redux/actions/cartActions";
 const MenuItem = () => {
     const { idItem } = useParams();
     const dispatch = useDispatch();
-    // const { item, setItem } = useState(null);
     const itemMenu = useSelector((state) => state.menu);
     const res = useSelector((state) => state.restaurants);
     const [quantity, setQuantity] = useState(1);
@@ -94,11 +94,8 @@ const MenuItem = () => {
         };
 
         dispatch(addItemCart(addNewItemCart))
-
-        console.log(addNewItemCart)
+        Notify("Item added to shopping cart 🛒 ", "#FFE031", "#FFC107");
     }
-
-
 
     return (
         <section className="menuItem">
