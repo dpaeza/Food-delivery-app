@@ -15,6 +15,7 @@ export const filterCollection = async (data = initialData) => {
     try {
         const q = data.key ? query(collections, where(data.key, '==', data.value)) : collections;
         const refDocs = await getDocs(q);
+        console.log(refDocs)
         refDocs.forEach( doc => {
             dataArray.push({
                 id: doc.id,

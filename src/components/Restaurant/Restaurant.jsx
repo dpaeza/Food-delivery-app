@@ -24,7 +24,11 @@ const Restaurant = () => {
 
     useEffect(() => {
         console.log(restaurantSelected);
-        dispatch(getMenuAsync(idRestaurant));
+        const restaurantFilter = {
+            key: "id_restaurant",
+            value: idRestaurant
+        };
+        dispatch(getMenuAsync(restaurantFilter));
     }, []);
 
     useEffect(() => {
@@ -34,6 +38,7 @@ const Restaurant = () => {
         ];
         const categories = ["All", ...newCategories];
         setCategory(categories);
+        console.log(categories);
         console.log(categories);
     }, [restaurantMenu]);
 
@@ -146,7 +151,7 @@ const Restaurant = () => {
                         <Link
                             className="restaurant__cards__link"
                             key={index}
-                            // to={`/restaurant/${restaurant.id}`}
+                            to={`/item/${platillo.id}`}
                         >
                             <div className="restaurant__cards__card">
                                 <figure>

@@ -9,12 +9,12 @@ const getMenu = (array) => {
     };
 };
 
-export const getMenuAsync = (id) => {
+export const getMenuAsync = (data) => {
     return async (dispatch) => {
         try {
             const menuRestaurant = await filterCollection({
-                key: "id_restaurant",
-                value: id,
+                key: data.key,
+                value: data.value,
                 collectionName: "menu",
             });
             console.log(menuRestaurant);
