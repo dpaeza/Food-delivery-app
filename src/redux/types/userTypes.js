@@ -18,3 +18,7 @@ export const restaurantTypes = {
 export const menuTypes = {
     GET_MENU: "GET_MENU",
 };
+
+export const cartTypes = {
+    ADD_ITEM: "ADD_ITEM",
+};
