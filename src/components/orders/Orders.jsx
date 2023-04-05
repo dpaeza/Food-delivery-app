@@ -25,6 +25,7 @@ const Orders = () => {
                         <Link
                             className="orders__div1__container__link"
                             key={index}
+                            to={`/order/${order.id}`}
                         >
                             <div className="orders__div1__container__card">
                                 <div className="orders__div1__container__card__div1">
@@ -48,7 +49,7 @@ const Orders = () => {
                                         className="orders__div1__container__card__div2__status"
                                         style={{
                                             color:
-                                                order.status == 'Delivered'
+                                                order.status == "Delivered"
                                                     ? "#77DF52"
                                                     : "#DF5252",
                                         }}

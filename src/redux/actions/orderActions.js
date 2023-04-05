@@ -32,6 +32,26 @@ export const getOrdersAsync = (id) => {
     };
 };
 
+export const getOneOrdersAsync = (data) => {
+    return async (dispatch) => {
+        try {
+            const orders = await filterCollection({
+                key: data.key,
+                value: data.value,
+                collectionName: "orders",
+            });
+            console.log(orders);
+            dispatch(getOrders(orders));
+        } catch (error) {
+            dispatch([]);
+            showAlert({
+                icon: "error",
+                text: "There was an error processing the request",
+            });
+        }
+    };
+};
+
 const createOrder = (obj) => {
     return {
         type: orderTypes.CREATE_ORDER,
