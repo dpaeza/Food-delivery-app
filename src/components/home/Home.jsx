@@ -213,7 +213,7 @@ const Home = () => {
             </main>
             {cart.cart.length !== 0 ? (
                 <div className="home__cart">
-                    <Link className="home__cart__link">
+                    <Link className="home__cart__link" to="/new_order">
                         <div>{cart.cart.length}</div>
                         <p>View cart</p>
                         <p>{totalCart.toFixed(1)}$</p>

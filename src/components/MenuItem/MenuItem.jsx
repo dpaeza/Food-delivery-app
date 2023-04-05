@@ -14,6 +14,7 @@ const MenuItem = () => {
     const dispatch = useDispatch();
     const itemMenu = useSelector((state) => state.menu);
     const res = useSelector((state) => state.restaurants);
+    const user = useSelector((state) => state.user);
     const [quantity, setQuantity] = useState(1);
     const [total, setTotal] = useState(itemMenu.menu[0]?.price);
     const [extra, setExtra] = useState([]);
@@ -84,16 +85,17 @@ const MenuItem = () => {
         const addNewItemCart = {
             id_restaurant: itemMenu.menu[0].id_restaurant,
             id_item: idItem,
+            id_user: user.uid,
             item_name: itemMenu.menu[0].name,
+            item_img: itemMenu.menu[0].picture,
             item_price: total,
             quantity: quantity,
             item_additional: extra,
             restaurant_name: restaurant.name,
             restaurant_logo: restaurant.logo,
-            delivery: restaurant?.delivery,
-            status: '',
-            payment: '',
-            Note: '',
+            status: "",
+            payment: "",
+            Note: "",
         };
 
         dispatch(addItemCart(addNewItemCart))

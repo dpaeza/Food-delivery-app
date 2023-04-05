@@ -20,6 +20,7 @@ import PrivateRoutes from "./PrivateRoutes.jsx";
 import { filterCollection } from "../services/filterCollection.js";
 import Restaurant from "../components/Restaurant/Restaurant.jsx";
 import MenuItem from "../components/MenuItem/MenuItem.jsx";
+import NewOrder from "../components/NewOrder/NewOrder.jsx";
 
 const RouterDom = () => {
     const dispatch = useDispatch();
@@ -142,6 +143,14 @@ const RouterDom = () => {
                     element={
                         <PrivateRoutes>
                             <MenuItem />
+                        </PrivateRoutes>
+                    }
+                />
+                <Route
+                    path="/new_order"
+                    element={
+                        <PrivateRoutes>
+                            <NewOrder />
                         </PrivateRoutes>
                     }
                 />

@@ -21,4 +21,11 @@ export const menuTypes = {
 
 export const cartTypes = {
     ADD_ITEM: "ADD_ITEM",
+    UPDATE: "UPDATE",
+    DELETE_ITEM: "DELETE_ITEM"
+};
+
+export const orderTypes = {
+    GET_ORDERS: "GET_ORDERS",
+    CREATE_ORDER: "CREATE_ORDER",
 };
