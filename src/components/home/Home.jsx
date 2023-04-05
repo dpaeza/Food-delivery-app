@@ -86,144 +86,157 @@ const Home = () => {
 
     return (
         <section className="home">
-            <div className="home__locationContainer">
-                <figure>
-                    <img src={locationIcon} alt="location icon" />
-                </figure>
-                <div>
-                    <p className="home__locationContainer__tittle">
-                        DELIVER TO
-                    </p>
-                    <p className="home__locationContainer__direction">
-                        {`${user?.address}, ${user?.city}`}
-                    </p>
+            <div className="home__up">
+                <div className="home__locationContainer">
+                    <figure>
+                        <img src={locationIcon} alt="location icon" />
+                    </figure>
+                    <div>
+                        <p className="home__locationContainer__tittle">
+                            DELIVER TO
+                        </p>
+                        <p className="home__locationContainer__direction">
+                            {`${user?.address}, ${user?.city}`}
+                        </p>
+                    </div>
                 </div>
-            </div>
-            <section className="carouselIMG">
-                <Swiper
-                    slidesPerView={"auto"}
-                    spaceBetween={16}
-                    modules={[Pagination]}
-                    pagination={{ clickable: true, type: "bullets", el: null }}
-                    className="mySwiper"
-                >
-                    {images.map((image, index) => (
-                        <SwiperSlide key={index}>
-                            <img
-                                src={image}
-                                alt={`promo ${index + 1}`}
-                                className="swiper-no-flexbox-shrink"
-                            />
-                        </SwiperSlide>
-                    ))}
-                </Swiper>
-            </section>
-            <h1>Restaurants and cafes</h1>
-            <section className="carouselButtons">
-                <Swiper
-                    slidesPerView={"auto"}
-                    spaceBetween={10}
-                    modules={[Pagination]}
-                    pagination={{ clickable: true, type: "bullets", el: null }}
-                    className="mySwiper"
-                >
-                    {buttons.map((button, index) => (
-                        <SwiperSlide key={index}>
-                            <div
-                                className="home__buttons"
-                                style={{
-                                    backgroundColor:
-                                        selectedFilter === button.text
-                                            ? "#FFE031"
-                                            : "#F2F2F2",
-                                }}
-                                onClick={() => setSelectedFilter(button.text)}
+                <section className="carouselIMG">
+                    <Swiper
+                        slidesPerView={"auto"}
+                        spaceBetween={16}
+                        modules={[Pagination]}
+                        pagination={{
+                            clickable: true,
+                            type: "bullets",
+                            el: null,
+                        }}
+                        className="mySwiper"
+                    >
+                        {images.map((image, index) => (
+                            <SwiperSlide key={index}>
+                                <img
+                                    src={image}
+                                    alt={`promo ${index + 1}`}
+                                    className="swiper-no-flexbox-shrink"
+                                />
+                            </SwiperSlide>
+                        ))}
+                    </Swiper>
+                </section>
+                <h1>Restaurants and cafes</h1>
+                <section className="carouselButtons">
+                    <Swiper
+                        slidesPerView={"auto"}
+                        spaceBetween={10}
+                        modules={[Pagination]}
+                        pagination={{
+                            clickable: true,
+                            type: "bullets",
+                            el: null,
+                        }}
+                        className="mySwiper"
+                    >
+                        {buttons.map((button, index) => (
+                            <SwiperSlide key={index}>
+                                <div
+                                    className="home__buttons"
+                                    style={{
+                                        backgroundColor:
+                                            selectedFilter === button.text
+                                                ? "#FFE031"
+                                                : "#F2F2F2",
+                                    }}
+                                    onClick={() =>
+                                        setSelectedFilter(button.text)
+                                    }
+                                >
+                                    {button.img ? <p>{button.img}</p> : null}
+                                    <p>{button?.text}</p>
+                                </div>
+                            </SwiperSlide>
+                        ))}
+                    </Swiper>
+                </section>
+                <main className="home__restaurants">
+                    {res.restaurants
+                        .filter((restaurant) =>
+                            selectedFilter === "All"
+                                ? true
+                                : restaurant.category === selectedFilter
+                        )
+                        .map((restaurant, index) => (
+                            <Link
+                                key={index}
+                                className="home__restaurants__restaurant"
+                                to={`/restaurant/${restaurant.id}`}
                             >
-                                {button.img ? <p>{button.img}</p> : null}
-                                <p>{button?.text}</p>
-                            </div>
-                        </SwiperSlide>
-                    ))}
-                </Swiper>
-            </section>
-            <main className="home__restaurants">
-                {res.restaurants
-                    .filter((restaurant) =>
+                                <figure>
+                                    <img
+                                        src={restaurant.picture}
+                                        alt="restaurant image"
+                                        className="home__restaurants__restaurant__imgRestaurant"
+                                    />
+                                </figure>
+                                <div>
+                                    <p className="home__restaurants__restaurant__name">
+                                        {restaurant.name}
+                                    </p>
+                                    <div className="home__restaurants__restaurant__stars">
+                                        {Array.from(
+                                            { length: restaurant.stars },
+                                            (_, i) => (
+                                                <img
+                                                    key={i}
+                                                    src={starYellow}
+                                                    alt="star icon"
+                                                />
+                                            )
+                                        )}
+                                        {Array.from(
+                                            { length: 5 - restaurant.stars },
+                                            (_, i) => (
+                                                <img
+                                                    key={restaurant.stars + i}
+                                                    src={starGrey}
+                                                    alt="star icon"
+                                                />
+                                            )
+                                        )}
+                                    </div>
+                                    <p className="home__restaurants__restaurant__timetable">
+                                        {`Work time ${restaurant.open} - ${restaurant.close}`}
+                                    </p>
+                                </div>
+                            </Link>
+                        ))}
+                    {res.restaurants.filter((restaurant) =>
                         selectedFilter === "All"
                             ? true
                             : restaurant.category === selectedFilter
-                    )
-                    .map((restaurant, index) => (
-                        <Link
-                            key={index}
-                            className="home__restaurants__restaurant"
-                            to={`/restaurant/${restaurant.id}`}
-                        >
+                    ).length === 0 && (
+                        <div className="home__restaurants__notFound">
                             <figure>
-                                <img
-                                    src={restaurant.picture}
-                                    alt="restaurant image"
-                                    className="home__restaurants__restaurant__imgRestaurant"
-                                />
+                                <img src={nothingFound} alt="img" />
                             </figure>
-                            <div>
-                                <p className="home__restaurants__restaurant__name">
-                                    {restaurant.name}
-                                </p>
-                                <div className="home__restaurants__restaurant__stars">
-                                    {Array.from(
-                                        { length: restaurant.stars },
-                                        (_, i) => (
-                                            <img
-                                                key={i}
-                                                src={starYellow}
-                                                alt="star icon"
-                                            />
-                                        )
-                                    )}
-                                    {Array.from(
-                                        { length: 5 - restaurant.stars },
-                                        (_, i) => (
-                                            <img
-                                                key={restaurant.stars + i}
-                                                src={starGrey}
-                                                alt="star icon"
-                                            />
-                                        )
-                                    )}
-                                </div>
-                                <p className="home__restaurants__restaurant__timetable">
-                                    {`Work time ${restaurant.open} - ${restaurant.close}`}
-                                </p>
-                            </div>
+                            <p>Nothing found </p>
+                        </div>
+                    )}
+                </main>
+            </div>
+            <div>
+                {cart.cart.length !== 0 ? (
+                    <div className="home__cart">
+                        <Link className="home__cart__link" to="/new_order">
+                            <div>{cart.cart.length}</div>
+                            <p>View cart</p>
+                            <p>{totalCart.toFixed(1)}$</p>
                         </Link>
-                    ))}
-                {res.restaurants.filter((restaurant) =>
-                    selectedFilter === "All"
-                        ? true
-                        : restaurant.category === selectedFilter
-                ).length === 0 && (
-                    <div className="home__restaurants__notFound">
-                        <figure>
-                            <img src={nothingFound} alt="img" />
-                        </figure>
-                        <p>Nothing found </p>
                     </div>
+                ) : (
+                    <></>
                 )}
-            </main>
-            {cart.cart.length !== 0 ? (
-                <div className="home__cart">
-                    <Link className="home__cart__link" to="/new_order">
-                        <div>{cart.cart.length}</div>
-                        <p>View cart</p>
-                        <p>{totalCart.toFixed(1)}$</p>
-                    </Link>
-                </div>
-            ) : (
-                <></>
-            )}
-
-            <Footer />
+                <Footer />
+            </div>
         </section>
     );
 };
