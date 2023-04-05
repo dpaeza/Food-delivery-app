@@ -1,4 +1,4 @@
-import { addDoc, collection, getDoc, getDocs, query, where } from "firebase/firestore";
+import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
 import { dataBase } from "../firebase/firebaseConfig";
 
 const initialData = {
