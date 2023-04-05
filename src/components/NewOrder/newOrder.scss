@@ -260,3 +260,154 @@
         }
     }
 }
+
+@media (min-width: 730px) {
+    .carouselButtons__Payment{
+    .swiper {
+            width: 100%;
+            height: 32px;
+            margin-left: 16px;
+        }
+
+        .swiper-slide {
+            text-align: center;
+            font-size: 18px;
+            background: #fff;
+
+            /* Center slide text vertically */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .swiper-slide div {
+            display: flex;
+            border-radius: 5px;
+            align-items: center;
+            justify-content: center;
+            gap: 18px;
+            background: #F2F2F2;
+            font-weight: 400;
+            font-size: 10px;
+            line-height: 12px;
+            color: #6C6C6C;
+            width: 105px;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .swiper-slide,
+        swiper-slide {
+            flex-shrink: unset !important;
+        }
+}
+
+.newOrder{
+
+    &__header{
+        padding: 12px 0px 0px 40px;
+
+        h1{
+            font-size: 18px;
+        }
+    }
+
+    &__deliverTo{
+        font-size: 24px;
+        margin: 32px 0px 10px 40px;
+    }
+
+    &__address{
+        margin: 0px 40px 32px 40px;
+
+        p{
+            font-size: 18px;
+        }
+
+        &__location{
+            height: 20px;
+            width: 20px;
+        }
+    }
+
+    &__payment{
+        font-size: 24px;
+        margin: 0px 0px 10px 40px;
+    }
+
+    &__itemsContainer{
+        margin: 54px 40px 27px 40px;
+
+        &__item{
+            height: 100px;;
+
+            &__div{
+                gap: 10px;
+
+                div{
+                    width: 66px;
+                    height: 40px;
+                    font-size: 14px;
+                }
+
+                p{
+                    font-size: 18px;
+                }
+
+                &__trash{
+                    width: 25px !important;
+                    height: 25px !important;
+                }
+            }
+
+            img{
+                width: 80px;
+                height: 80px;
+            }
+
+            &__price{
+                font-size: 18px;
+            }
+
+            
+        }
+    }
+
+    &__note{
+        font-size: 24px;
+        margin: 0px 0px 10px 40px;
+    }
+
+    &__noteArea{
+        font-size: 18px;
+        padding: 0px 16px;
+    }
+
+    &__noteArea::placeholder{
+        font-size: 18px;
+    }
+
+    &__down{
+        margin: 100px 40px 60px 40px;
+
+        &__div1{
+            font-size: 18px;
+        }
+
+        &__div2{
+            font-size: 18px;
+
+            &__total{
+                font-size: 24px;
+            }
+        }
+
+        &__order{
+            font-size: 16px;
+            
+        }
+    }
+}
+}
