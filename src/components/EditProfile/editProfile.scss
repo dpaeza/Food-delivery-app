@@ -1,0 +1,68 @@
+.profile__div1__editPhoto{
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    cursor: pointer;
+
+    img{
+        width: 16px;
+        height: 16px;
+        display: none;
+    }
+}
+
+.profile__div1__editPhoto:hover{
+    img{
+        display: block;
+    }
+}
+
+.profile__div1__edit{
+    background: #F2F2F2;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    color: #414141;
+    border-radius: 10px;
+    height: 25px;
+    outline: #414141;
+}
+
+.profile__button{
+    background: #FFE031;
+    border-radius: 10px;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
+    text-align: center;
+    color: #414141;
+    height: 44px;
+    margin: 0px 16px 60px 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.profile__div1__header{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 13px;
+    height: 14px;
+
+    h1{
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 16px;
+        letter-spacing: -0.3px;
+        color: #414141;
+    }
+
+    img{
+        height: 14px;
+        width: 14px;
+    }
+}
