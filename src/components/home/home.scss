@@ -220,3 +220,89 @@
         }
     }
 }
+
+@media (min-width: 730px) {
+    .home {
+
+    &__locationContainer {
+
+        &__tittle {
+            font-size: 14px;
+        }
+
+        &__direction {
+            font-size: 18px;
+        }
+    }
+    .carouselIMG{
+
+        .swiper-slide {
+            font-size: 22px;
+        }
+
+    }
+    
+    h1{
+        font-size: 18px;
+    }
+
+    .carouselButtons{
+        .swiper {
+            height: 36px;
+        }
+
+        .swiper-slide {
+            font-size: 22px;
+        }
+
+        .swiper-slide div {
+            font-size: 14px;
+            width: 120px;
+        }
+
+    }
+
+    &__restaurants{
+        
+        &__restaurant{
+
+            &__imgRestaurant{
+                width: 200px;
+                height: 150px;
+            }
+
+            &__name{
+                font-size: 18px;
+            }
+
+            &__timetable{
+                font-size: 16px;
+            }
+
+
+        }
+
+        &__notFound{
+
+            p{
+                font-size: 16px;
+            }
+        }
+    }
+
+    &__cart{
+
+        &__link{
+
+            div{
+                font-size: 14px;
+            }
+
+            p{
+                font-size: 16px;
+            }
+
+        }
+    }
+}
+}
