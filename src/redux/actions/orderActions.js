@@ -20,6 +20,7 @@ export const getOrdersAsync = (id) => {
                 value: id,
                 collectionName: "orders",
             });
+            console.log(orders)
             dispatch(getOrders(orders));
         } catch (error) {
             dispatch([]);
