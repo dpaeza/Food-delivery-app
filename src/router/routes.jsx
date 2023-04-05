@@ -22,6 +22,7 @@ import Restaurant from "../components/Restaurant/Restaurant.jsx";
 import MenuItem from "../components/MenuItem/MenuItem.jsx";
 import NewOrder from "../components/NewOrder/NewOrder.jsx";
 import Order from "../components/Order/Order.jsx";
+import EditProfile from "../components/EditProfile/EditProfile.jsx";
 
 const RouterDom = () => {
     const dispatch = useDispatch();
@@ -160,6 +161,14 @@ const RouterDom = () => {
                     element={
                         <PrivateRoutes>
                             <Order />
+                        </PrivateRoutes>
+                    }
+                />
+                <Route
+                    path="/edit_profile"
+                    element={
+                        <PrivateRoutes>
+                            <EditProfile />
                         </PrivateRoutes>
                     }
                 />

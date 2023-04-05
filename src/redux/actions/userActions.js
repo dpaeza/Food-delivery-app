@@ -98,6 +98,7 @@ export const userRegisterAsync = ({
 // };
 
 export const userLoginEmail = (user) => {
+    console.log(user)
     return {
         type: userTypes.LOGIN_USER_EMAIL_AND_PASSWORD,
         payload: user,

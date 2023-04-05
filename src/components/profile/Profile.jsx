@@ -10,6 +10,7 @@ import world from "../../assets/world.svg";
 import locationGrey from "../../assets/location_grey.svg";
 import FAQ from "../../assets/FAQ.svg";
 import call from "../../assets/call.svg";
+import { Link } from "react-router-dom";
 
 
 const Profile = () => {
@@ -33,17 +34,22 @@ const Profile = () => {
                 </figure>
                 <h1>{user?.name}</h1>
                 <section className="profile__div1__buttons">
-                    <div className="profile__div1__buttons__button">
-                        <div>
+                    <Link
+                        className="profile__div1__buttons__link"
+                        to={"/edit_profile"}
+                    >
+                        <div className="profile__div1__buttons__button">
+                            <div>
+                                <i>
+                                    <img src={account} alt="icon" />
+                                </i>
+                                <p>Account edit</p>
+                            </div>
                             <i>
-                                <img src={account} alt="icon" />
+                                <img src={nextArrow} alt="" />
                             </i>
-                            <p>Account edit</p>
                         </div>
-                        <i>
-                            <img src={nextArrow} alt="" />
-                        </i>
-                    </div>
+                    </Link>
                     <div className="profile__div1__buttons__button">
                         <div>
                             <i>

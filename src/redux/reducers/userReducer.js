@@ -48,7 +48,7 @@ export const userReducer = (state = initialState, action) => {
                 city: action.payload.city,
                 address: action.payload.address,
                 birthday: action.payload.birthday,
-                photoURL: action.payload.photoURL,
+                photoURL: action.payload.picture,
                 userType: action.payload.userType,
                 uid: action.payload.uid,
                 error: action.payload.error,
